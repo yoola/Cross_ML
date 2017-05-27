@@ -1,0 +1,15 @@
+log /Users/jula/Github/main_program/full.log
+# limitFeatureSize:False featureSizeTrehold:4
+mlSettings abortError:1 minImprovementPerRound:0.01 numberOfRounds:100 withHierarchy:false
+vm /Users/jula/Github/main_program/var.xml
+all /Users/jula/Github/main_program/meas.xml
+nfp Measured Value
+negfw
+featureWise
+#pairWise
+allBinary
+start
+analyze-learning
+clean-sampling
+# clean-learning
+# clean-global 
