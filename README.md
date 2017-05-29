@@ -9,6 +9,7 @@
 Do the following steps:
 
 For SPL Conqueror:  
+
 	- Compile the program SPL Conqueror with Xamarin Studio  
 	- see more instructions for SPL Conqueror on https://github.com/se-passau/SPLConqueror  
 	- in the Xamarin environment:  
@@ -18,6 +19,7 @@ For SPL Conqueror:
 
 
 For CART and Sakar:  
+
 	- replace the files featurecoverage.r, CART.R in the 'ces' repository with the source files in Cross_ML/ces_modified  
 	- create an Output folder for the CART and Sakar results  
 	- change paths in the files featurecoverage.r, CART.R and start_model.R accordingly  
