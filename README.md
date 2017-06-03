@@ -20,9 +20,9 @@ For SPL Conqueror:
 
 For CART and Sakar:  
 
-	- replace the files featurecoverage.r, CART.R in the 'ces' repository with the source files in Cross_ML/ces_modified  
+	- replace or add the files in the ces/source repository with the source files in Cross_ML/ces_modified  
 	- create an Output folder for the CART and Sakar results  
-	- change paths in the files featurecoverage.r, CART.R and start_model.R accordingly  
+	- change paths in the files featurecoverage.r, CART.R, start_CART.R, start_SAKAR.R accordingly  
 	- change paths in ML_Cross/Code/start.py accordingly  
 
 
