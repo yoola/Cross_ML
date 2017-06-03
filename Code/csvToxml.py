@@ -36,7 +36,7 @@ def conv_csv2xml(filepath):
 	
 	# write into script
 	
-	script1.write("<vm name=\"new_var\"> \n\t <binaryOptions>")
+	script1.write("<vm name=\"var_model\"> \n\t <binaryOptions>")
 	elem_old = str()
 	
 	check = False

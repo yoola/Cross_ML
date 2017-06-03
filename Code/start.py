@@ -4,13 +4,35 @@ import sys
 from pathlib import Path
 from csvToxml import conv_csv2xml
 from xmlTocsv import conv_xml2csv
-from parse_logfile import plot_results
+from parse_plot_logs import plot_results
+from settings_splc import init_SPLC
+from settings_CART import init_CART
+from settings_SAKAR import init_SAKAR
 
-def run_xml(check):
 
-	if check == True:
+def Path_is_file(file_):
+
+	if not Path(file_).is_file():
+		print("No file directory.")
+		sys.exit()
+
+def get_meas_title(path_):
+
+	pos1 = path_.rfind("/")
+	pos2 = path_.rfind(".")
+
+	meas_title = path_[pos1+1:pos2]
+
+	return meas_title 
+
+
+def run_xml(check, SPLC_):
+
+	if check == True:      # if check is set to False, if measurement files are already read in
 		meas_ = input("Input your measurements xml file path: ")
 		var_ = input("Input your variability model xml file path: ")
+		
+
 
 		if not (meas_.endswith('.xml') and var_.endswith('.xml')):
 			print("You entered the wrong file format.")
@@ -25,42 +47,22 @@ def run_xml(check):
 	xml_files.append(meas_)
 	xml_files.append(var_)
 
-	if not (Path(meas_).is_file() and Path(var_).is_file()):
-		print("No file directory.")
-		sys.exit()
+	Path_is_file(meas_)
+	Path_is_file(var_)
 
-				#log /Users/jula/Github/SPLConqueror/SPLConqueror/Test/TestData/full.log
-	str1 = str("log /Users/jula/Github/main_program/full.log")
-	str2 = str("# limitFeatureSize:False featureSizeTrehold:4")
-	str3 = str("mlSettings abortError:1 minImprovementPerRound:0.01 numberOfRounds:100 withHierarchy:false")
-	str4 = str("vm "+var_)
-	str5 = str("all "+meas_)
-	str6 = str("nfp Measured Value")
-	str7 = str("negfw")
-	str8 = str("featureWise")
-	str9 = str("#pairWise")
-	str10 = str("allBinary")
-	str11 = str("start")
-	str12 = str("analyze-learning")
-	str13 = str("clean-sampling")
-	str14 = str("# clean-learning")
-	str15 = str("# clean-global ")
-	
-	#path = str("/Users/jula/Github/SPLConqueror/SPLConqueror/script.a")
+	if(SPLC_ =="y"):
 
+		print("Sampling Options for SPL Conqueror: ")
+		init_SPLC(meas_, var_)
+		print("Starting SPL Conqueror")
+		print("See full.log file for progress")
+		cl_dir ="/Users/jula/Github/SPLConqueror/SPLConqueror/CommandLine/bin/Debug/CommandLine.exe"
+		os.system("mono "+cl_dir+" "+os.getcwd()+"/script.a")
 
-	script_ = open("script.a", 'w')
-	script_.write(str1 +'\n'+str2+'\n'+str3 +'\n'+str4+'\n'+str5 +'\n'+str6+'\n'+str7 +'\n'+str8+'\n'+str9 
-		+'\n'+str10+'\n'+str11+'\n'+str12+'\n'+str13+'\n'+str14+'\n'+str15)
-	script_.close()
-	print("Starting SPL Conqueror")
-	print("See full.log file for progress")
-	cl_dir ="/Users/jula/Github/SPLConqueror/SPLConqueror/CommandLine/bin/Debug/CommandLine.exe"
-	os.system("mono "+cl_dir+" /Users/jula/Github/main_program/script.a")
 	return xml_files
 
 
-def run_csv(check):
+def run_csv(check, CART_, SAKAR_):
 
 	if check == True:
 		csv_ = input("Input your measurements csv file path: ")
@@ -71,48 +73,70 @@ def run_csv(check):
 	else:
 		csv_ = str(os.getcwd()+"/test.csv")
 
-	if not Path(csv_).is_file():
-		print("No file directory.")
-		sys.exit()
+	Path_is_file(csv_)
 
-	start_dir = str("/Users/jula/Github/ces/source/start_model.R")
-	os.system("RScript "+ start_dir+ " "+ csv_)
+	meas_tile = get_meas_title(csv_)
+
+	if(CART_ == "y"):
+
+		print("Sampling Options for CART: ")
+		init_CART()
+
+		print("Starting CART")
+		start_dir = str("/Users/jula/Github/ces/source/start_CART.R")
+		os.system("RScript "+ start_dir+ " "+ csv_)
+		
+	if(SAKAR_ == "y"):
+
+		print("Sampling Options for SAKAR: ")
+		init_SAKAR()
+
+		print("Starting SAKAR")
+		start_dir = str("/Users/jula/Github/ces/source/start_SAKAR.R")
+		os.system("RScript "+ start_dir+ " "+ csv_)
+
 	return csv_
-	
+
 def main():
 
 	meas_ = str()
 	var_ = str()
 	csv_ = str()
+	meas_title = str()
 	check = True
 
 
 	input_ = input("Do you have your measurements as xml or csv?: ")
-	
+
+	print("\nWhich algorithms do you want to include in the analysis?")
+	SPLC_ = input("SPL Conqueror? (y/n): ")
+	CART_ = input("CART? (y/n): ")
+	SAKAR_ = input("SAKAR? (y/n): ")
+
 	
 	if input_ == 'xml':
-		xml_f = run_xml(check)
+		xml_f = run_xml(check, SPLC_)
+		meas_tile = get_meas_title(xml_f[1])
 		print("SPL_Conqueror executed.")
 		conv_xml2csv(xml_f[0],xml_f[1])
 		check = False
-		run_csv(check)
-		print("CART and SAKAR executed.")
+		run_csv(check, CART_, SAKAR_)
 	
 	
 	elif input_ == 'csv':
 	
-		csv_ = run_csv(check)
+		csv_ = run_csv(check, CART_, SAKAR_)
+		meas_tile = get_meas_title(csv_)
 		print("CART and SAKAR executed.")	
 		conv_csv2xml(csv_)
 		check = False
-		run_xml(check)
-		print("SPL_Conqueror executed.")
+		run_xml(check, SPLC_)
 		
 	
 	else:
 		print("No valid input format.")
 		sys.exit()
 	
-	plot_results()
+	plot_results(SPLC_,CART_,SAKAR_, meas_tile)
 
 main()

@@ -12,6 +12,7 @@ library(randomForest)
 library(gbm)
 library(rattle)
 
+source(file="/Users/jula/Github/main_program/script_CART.R")
 
 # Initialization ##################################################################################
 initData <- function(testSet){
@@ -46,8 +47,7 @@ initData <- function(testSet){
 initGeneralParams <- function(){
 	#print("Please enter number of times experiment should be repeated")
 	#seedRepetitions <<- scan(file = "", what = integer(), n = 1, quiet = FALSE)
-	seedRepetitions <<- 5 # added one <
-	crv$seed <- 1
+	seedRepetitions <<- numberOfRounds #5 
 	
 	#print("Please enter name of the method that will be used for experiment")
 	#methodName <<- scan(file = "", what = " ", n = 1, quiet = TRUE)
@@ -117,7 +117,7 @@ initComplexityParams <- function(){
 	
 	#cat("Please enter complexity step", '\n')
 	#complexStep <<- scan(file = "", what = numeric(), n = 1, quiet = FALSE)
-	complexStep <- 0.0001
+	complexStep <- minImprovementPerRound  #0.0001
 }
 
 initCARTParams <- function(){

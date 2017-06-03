@@ -1,6 +1,5 @@
 log /Users/jula/Github/main_program/full.log
-# limitFeatureSize:False featureSizeTrehold:4
-mlSettings abortError:1 minImprovementPerRound:0.01 numberOfRounds:100 withHierarchy:false
+mlSettings abortError:1 minImprovementPerRound:0.0001 numberOfRounds:5 withHierarchy:False
 vm /Users/jula/Github/main_program/var.xml
 all /Users/jula/Github/main_program/meas.xml
 nfp Measured Value

@@ -2,9 +2,6 @@
 # 
 args <- commandArgs(trailingOnly=TRUE)
 
-print(args)
-
-
 #starting CART
 source(file="/Users/jula/Github/ces/source/CART.R")
 
@@ -12,7 +9,7 @@ source(file="/Users/jula/Github/ces/source/CART.R")
 # arithmetic or geometric, sampling lower and upper range
 # complexity range upper/lower value, complexity step
 # init()
-initData(args)
+initData(args[1])
 initParams()
 
 # building sample vector
@@ -23,12 +20,7 @@ initParams()
 analyse() #calls analyseCART();
 
 
-# starting sakar
-source(file="/Users/jula/Github/ces/source/featurecoverage.R")
 
-initData(args)
-initParams()
-analyse()
 
 
 
