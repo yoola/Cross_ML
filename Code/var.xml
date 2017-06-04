@@ -1,0 +1,140 @@
+<vm name="var_model"> 
+	 <binaryOptions>
+		 <configurationOption> 
+			<name>base</name>
+			<outputString>base</outputString>
+			<prefix>
+			</prefix>
+			<postfix>
+			</postfix>
+			<parent>
+			</parent>
+			<children />
+			<impliedOptions />
+			<excludedOptions /> 
+			<defaultValue>Selected</defaultValue>
+			<optional>True</optional>
+		</configurationOption>
+		 <configurationOption> 
+			<name>hostnamelookups</name>
+			<outputString>hostnamelookups</outputString>
+			<prefix>
+			</prefix>
+			<postfix>
+			</postfix>
+			<parent>
+			</parent>
+			<children />
+			<impliedOptions />
+			<excludedOptions /> 
+			<defaultValue>Selected</defaultValue>
+			<optional>True</optional>
+		</configurationOption>
+		 <configurationOption> 
+			<name>keepalive</name>
+			<outputString>keepalive</outputString>
+			<prefix>
+			</prefix>
+			<postfix>
+			</postfix>
+			<parent>
+			</parent>
+			<children />
+			<impliedOptions />
+			<excludedOptions /> 
+			<defaultValue>Selected</defaultValue>
+			<optional>True</optional>
+		</configurationOption>
+		 <configurationOption> 
+			<name>enablesendfile</name>
+			<outputString>enablesendfile</outputString>
+			<prefix>
+			</prefix>
+			<postfix>
+			</postfix>
+			<parent>
+			</parent>
+			<children />
+			<impliedOptions />
+			<excludedOptions /> 
+			<defaultValue>Selected</defaultValue>
+			<optional>True</optional>
+		</configurationOption>
+		 <configurationOption> 
+			<name>followsymlinks</name>
+			<outputString>followsymlinks</outputString>
+			<prefix>
+			</prefix>
+			<postfix>
+			</postfix>
+			<parent>
+			</parent>
+			<children />
+			<impliedOptions />
+			<excludedOptions /> 
+			<defaultValue>Selected</defaultValue>
+			<optional>True</optional>
+		</configurationOption>
+		 <configurationOption> 
+			<name>accesslog</name>
+			<outputString>accesslog</outputString>
+			<prefix>
+			</prefix>
+			<postfix>
+			</postfix>
+			<parent>
+			</parent>
+			<children />
+			<impliedOptions />
+			<excludedOptions /> 
+			<defaultValue>Selected</defaultValue>
+			<optional>True</optional>
+		</configurationOption>
+		 <configurationOption> 
+			<name>extendedstatus</name>
+			<outputString>extendedstatus</outputString>
+			<prefix>
+			</prefix>
+			<postfix>
+			</postfix>
+			<parent>
+			</parent>
+			<children />
+			<impliedOptions />
+			<excludedOptions /> 
+			<defaultValue>Selected</defaultValue>
+			<optional>True</optional>
+		</configurationOption>
+		 <configurationOption> 
+			<name>inmemory</name>
+			<outputString>inmemory</outputString>
+			<prefix>
+			</prefix>
+			<postfix>
+			</postfix>
+			<parent>
+			</parent>
+			<children />
+			<impliedOptions />
+			<excludedOptions /> 
+			<defaultValue>Selected</defaultValue>
+			<optional>True</optional>
+		</configurationOption>
+		 <configurationOption> 
+			<name>handle</name>
+			<outputString>handle</outputString>
+			<prefix>
+			</prefix>
+			<postfix>
+			</postfix>
+			<parent>
+			</parent>
+			<children />
+			<impliedOptions />
+			<excludedOptions /> 
+			<defaultValue>Selected</defaultValue>
+			<optional>True</optional>
+		</configurationOption>
+	 </binaryOptions> 
+	<numericOptions /> 
+ </vm>

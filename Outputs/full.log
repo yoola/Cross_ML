@@ -1,0 +1,24 @@
+command: mlSettings abortError:1 minImprovementPerRound:0.01 numberOfRounds:1 withHierarchy:False
+command: vm /Users/jula/Github/Cross_ML/Code/var.xml
+command: all /Users/jula/Github/Cross_ML/Code/meas.xml
+Configs with too large deviation: 0
+192 configurations loaded.
+command: nfp Measured Value
+command: negfw
+command: featureWise
+command: allBinary
+command: start
+Learning: NumberOfConfigurationsLearning:192 NumberOfConfigurationsValidation:192
+Learning progress:
+1;1409.6875 * root + 35.9375000000005 * followsymlinks;30.2327606194552;30.2327606194552;30.2327606194552;30.2327606194552;0.072178;2;35.9375000000005 * followsymlinks;1;1.79769313486232E+308;
+Elapsed=00:00:00.0769718
+Average model: 
+Error :100
+Finished
+command: analyze-learning
+Round, Model, LearningError, LearningErrorRel, ValidationError, ValidationErrorRel, ElapsedSeconds, ModelComplexity, BestCandidate, BestCandidateSize, BestCandidateScore, TestError
+Models:
+Termination reason: numberOfRounds
+1;1409.6875 * root + 35.9375000000005 * followsymlinks;30.2327606194552;30.2327606194552;30.2327606194552;30.2327606194552;0.072178;2;35.9375000000005 * followsymlinks;1;1.79769313486232E+308;30.2327606194552
+Analyze finished
+command: clean-sampling

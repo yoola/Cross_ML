@@ -2,7 +2,8 @@
 args <- commandArgs(trailingOnly=TRUE)
 
 # starting sakar
-source(file="/Users/jula/Github/ces/source/featurecoverage.R")
+source(file="/Users/jula/Github/ces/source/path_settings.R")
+source(file=algo_SAKAR)
 
 initData(args[1])
 initParams()

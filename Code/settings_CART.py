@@ -1,4 +1,9 @@
 import os
+from path_settings import init_paths
+
+path_list = init_paths()
+CART_script = path_list[1]
+
 
 def init_CART():
 
@@ -20,6 +25,6 @@ def init_CART():
 
 	
 	
-	script_ = open("script_CART.R", 'w')
+	script_ = open(CART_script, 'w')
 	script_.write(str1 +'\n'+str2+'\n'+str3 +'\n'+str4+'\n'+str5 +'\n'+str6+'\n'+str7 +'\n'+str8)
 	script_.close()

@@ -1,4 +1,9 @@
 import os
+from path_settings import init_paths
+
+path_list = init_paths()
+SPLC_script = path_list[0]
+SPLC_log = path_list[6]
 
 def init_SPLC(meas_, var_):
 
@@ -18,7 +23,7 @@ def init_SPLC(meas_, var_):
 	
 	#build script.a 
 	
-	str1 = str("log "+os.getcwd()+"/full.log")
+	str1 = str("log "+SPLC_log)
 	#str2 = str("limitFeatureSize:False featureSizeTreshold:4")
 	#str3 = str("mlSettings abortError:1 minImprovementPerRound:0.01 numberOfRounds:100 withHierarchy:false")
 	str2 = str("mlSettings abortError:1 minImprovementPerRound:"+minIPR_+" numberOfRounds:"+numberofrounds_+" withHierarchy:"+hierarchy_)
@@ -51,7 +56,7 @@ def init_SPLC(meas_, var_):
 	str14 = str("# clean-global ")
 	
 	
-	script_ = open("script.a", 'w')
+	script_ = open(SPLC_script, 'w')
 	script_.write(str1 +'\n'+str2+'\n'+str3 +'\n'+str4+'\n'+str5 +'\n'+str6+'\n'+str7 +'\n'+str8+'\n'+str9 
 		+'\n'+str10+'\n'+str11+'\n'+str12+'\n'+str13+'\n'+str14)
 	script_.close()

@@ -8,7 +8,13 @@ from parse_plot_logs import plot_results
 from settings_splc import init_SPLC
 from settings_CART import init_CART
 from settings_SAKAR import init_SAKAR
+from path_settings import init_paths
 
+path_list = init_paths()
+SPLC_script = path_list[0]
+SPLC_exe = path_list[3]
+CART_exe = path_list[4]
+SAKAR_exe = path_list[5]
 
 def Path_is_file(file_):
 
@@ -56,8 +62,8 @@ def run_xml(check, SPLC_):
 		init_SPLC(meas_, var_)
 		print("Starting SPL Conqueror")
 		print("See full.log file for progress")
-		cl_dir ="/Users/jula/Github/SPLConqueror/SPLConqueror/CommandLine/bin/Debug/CommandLine.exe"
-		os.system("mono "+cl_dir+" "+os.getcwd()+"/script.a")
+		cl_dir = SPLC_exe
+		os.system("mono "+cl_dir+" "+SPLC_script)
 
 	return xml_files
 
@@ -65,6 +71,7 @@ def run_xml(check, SPLC_):
 def run_csv(check, CART_, SAKAR_):
 
 	if check == True:
+
 		csv_ = input("Input your measurements csv file path: ")
 		
 		if not csv_.endswith('.csv'):
@@ -83,8 +90,7 @@ def run_csv(check, CART_, SAKAR_):
 		init_CART()
 
 		print("Starting CART")
-		start_dir = str("/Users/jula/Github/ces/source/start_CART.R")
-		os.system("RScript "+ start_dir+ " "+ csv_)
+		os.system("RScript "+ CART_exe+ " "+ csv_)
 		
 	if(SAKAR_ == "y"):
 
@@ -92,8 +98,7 @@ def run_csv(check, CART_, SAKAR_):
 		init_SAKAR()
 
 		print("Starting SAKAR")
-		start_dir = str("/Users/jula/Github/ces/source/start_SAKAR.R")
-		os.system("RScript "+ start_dir+ " "+ csv_)
+		os.system("RScript "+ SAKAR_exe+ " "+ csv_)
 
 	return csv_
 
@@ -104,7 +109,6 @@ def main():
 	csv_ = str()
 	meas_title = str()
 	check = True
-
 
 	input_ = input("Do you have your measurements as xml or csv?: ")
 
@@ -126,7 +130,7 @@ def main():
 	elif input_ == 'csv':
 	
 		csv_ = run_csv(check, CART_, SAKAR_)
-		meas_tile = get_meas_title(csv_)
+		meas_title = get_meas_title(csv_)
 		print("CART and SAKAR executed.")	
 		conv_csv2xml(csv_)
 		check = False
@@ -137,6 +141,6 @@ def main():
 		print("No valid input format.")
 		sys.exit()
 	
-	plot_results(SPLC_,CART_,SAKAR_, meas_tile)
+	plot_results(SPLC_,CART_,SAKAR_, meas_title)
 
 main()

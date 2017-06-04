@@ -9,7 +9,8 @@ library(randomForest)
 library(gbm)
 library(rattle)
 
-source(file="/Users/jula/Github/main_program/script_SAKAR.R")
+source(file="/Users/jula/Github/ces/source/path_settings.R")
+source(file=script_SAKAR)
 
 # Initialization ##################################################################################
 initData <- function(testSet){
@@ -22,7 +23,7 @@ initData <- function(testSet){
 
 	#cat("Please enter address of output folder (for example: /Useres/Data/Output)", '\n')
 	#outputAddress <<- scan(file = "", what = " ", n = 1, quiet = TRUE)
-	outputAddress <<- "/Users/jula/Github/ces/data/Benchmark/Output_sakar"
+	outputAddress <<- output_SAKAR
 	# added one <
 	
 	#cat("Please enter output filename", "\n")

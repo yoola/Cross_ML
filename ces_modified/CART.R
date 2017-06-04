@@ -12,7 +12,8 @@ library(randomForest)
 library(gbm)
 library(rattle)
 
-source(file="/Users/jula/Github/main_program/script_CART.R")
+source(file="/Users/jula/Github/ces/source/path_settings.R")
+source(file=script_CART)
 
 # Initialization ##################################################################################
 initData <- function(testSet){
@@ -26,7 +27,7 @@ initData <- function(testSet){
 
 	#cat("Please enter address of output folder (for example: /Useres/Data/Output)", '\n')
 	#outputAddress <<- scan(file = "", what = " ", n = 1, quiet = TRUE)
-	outputAddress <<- "/Users/jula/Github/ces/data/Benchmark/Output_CART"
+	outputAddress <<- output_CART
 	# added one <
 	
 	#cat("Please enter output filename", "\n")

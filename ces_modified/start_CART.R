@@ -3,7 +3,8 @@
 args <- commandArgs(trailingOnly=TRUE)
 
 #starting CART
-source(file="/Users/jula/Github/ces/source/CART.R")
+source(file="/Users/jula/Github/ces/source/path_settings.R")
+source(file=algo_CART)
 
 # Benchmark input csv, Output folder, number of experiment repetitions
 # arithmetic or geometric, sampling lower and upper range
