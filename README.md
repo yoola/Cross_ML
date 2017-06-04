@@ -2,7 +2,6 @@
 
 - Download git respositories: 
 	- https://github.com/yoola/Cross_ML
-	- SAKAR and CART: https://github.com/atrisarkar/ces
 	- SPL Conqueror: https://github.com/se-passau/SPLConqueror
 
 
@@ -21,8 +20,10 @@ For SPL Conqueror:
 
 For CART and Sakar:  
 
-	- replace or add the files in the ces/source repository with the source files in Cross_ML/ces_modified  
-	- create an Output folder for the CART and Sakar results  
-	- change paths in all files copied from Cross_ML/ces_modified accordingly  
+	- change paths in all of the files in the folder Cross_ML/ces_modified accordingly
+	- the files are modified versions from https://github.com/atrisarkar/ces
+	
+
+Run the file start.py in the Cross_ML/Code folder
 
 Note: To run this program on a different operating system than OSX, change the command in start.py accordingly: os.system("your command")

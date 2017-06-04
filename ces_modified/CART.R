@@ -12,7 +12,7 @@ library(randomForest)
 library(gbm)
 library(rattle)
 
-source(file="/Users/jula/Github/ces/source/path_settings.R")
+source(file="/Users/jula/Github/Cross_ML/ces_modified/path_settings.R")
 source(file=script_CART)
 
 # Initialization ##################################################################################

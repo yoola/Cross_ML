@@ -31,73 +31,43 @@ def get_meas_title(path_):
 
 	return meas_title 
 
+def set_sample_opts(SPLC_, CART_, SAKAR_, meas_, var_):
 
-def run_xml(check, SPLC_):
+	if(SPLC_ =="y"):
+		print("\nSampling Options for SPL Conqueror: ")
+		init_SPLC(meas_, var_)
 
-	if check == True:      # if check is set to False, if measurement files are already read in
-		meas_ = input("Input your measurements xml file path: ")
-		var_ = input("Input your variability model xml file path: ")
-		
+	if(CART_ == "y"):
+		print("\nSampling Options for CART: ")
+		init_CART()
 
-
-		if not (meas_.endswith('.xml') and var_.endswith('.xml')):
-			print("You entered the wrong file format.")
-			sys.exit()
-
-	else:
-		meas_ = str(os.getcwd()+"/meas.xml")
-		var_ =  str(os.getcwd()+"/var.xml")
+	if(SAKAR_ == "y"):
+		print("\nSampling Options for SAKAR: ")
+		init_SAKAR()
 
 
-	xml_files = []
-	xml_files.append(meas_)
-	xml_files.append(var_)
 
-	Path_is_file(meas_)
-	Path_is_file(var_)
+def run_xml(SPLC_, meas_, var_):
 
 	if(SPLC_ =="y"):
 
-		print("Sampling Options for SPL Conqueror: ")
-		init_SPLC(meas_, var_)
-		print("Starting SPL Conqueror")
+		print("\nStarting SPL Conqueror")
 		print("See full.log file for progress")
 		cl_dir = SPLC_exe
 		os.system("mono "+cl_dir+" "+SPLC_script)
 
-	return xml_files
 
+def run_csv(CART_, SAKAR_, csv_):
 
-def run_csv(check, CART_, SAKAR_):
-
-	if check == True:
-
-		csv_ = input("Input your measurements csv file path: ")
-		
-		if not csv_.endswith('.csv'):
-			print("You entered the wrong file format.")
-			sys.exit()
-	else:
-		csv_ = str(os.getcwd()+"/test.csv")
-
-	Path_is_file(csv_)
-
-	meas_tile = get_meas_title(csv_)
 
 	if(CART_ == "y"):
 
-		print("Sampling Options for CART: ")
-		init_CART()
-
-		print("Starting CART")
+		print("\nStarting CART")
 		os.system("RScript "+ CART_exe+ " "+ csv_)
 		
 	if(SAKAR_ == "y"):
 
-		print("Sampling Options for SAKAR: ")
-		init_SAKAR()
-
-		print("Starting SAKAR")
+		print("\nStarting SAKAR")
 		os.system("RScript "+ SAKAR_exe+ " "+ csv_)
 
 	return csv_
@@ -117,24 +87,51 @@ def main():
 	CART_ = input("CART? (y/n): ")
 	SAKAR_ = input("SAKAR? (y/n): ")
 
+
 	
 	if input_ == 'xml':
-		xml_f = run_xml(check, SPLC_)
-		meas_tile = get_meas_title(xml_f[1])
-		print("SPL_Conqueror executed.")
-		conv_xml2csv(xml_f[0],xml_f[1])
-		check = False
-		run_csv(check, CART_, SAKAR_)
+
+
+		meas_ = input("Input your measurements xml file path: ")
+		var_ = input("Input your variability model xml file path: ")
+
+		Path_is_file(meas_)
+		Path_is_file(var_)
+		
+		if not (meas_.endswith('.xml') and var_.endswith('.xml')):
+			print("You entered the wrong file format.")
+			sys.exit()
+
+		conv_xml2csv(meas_,var_) # test.csv is created
+		csv_ = str(os.getcwd()+"/test.csv")
+
+		meas_title = get_meas_title(var_)
+		set_sample_opts(SPLC_, CART_, SAKAR_, meas_, var_)
+
+		run_xml(SPLC_, meas_, var_)
+		run_csv(CART_, SAKAR_, csv_)
 	
 	
 	elif input_ == 'csv':
-	
-		csv_ = run_csv(check, CART_, SAKAR_)
+
+		csv_ = input("Input your measurements csv file path: ")
+
+		Path_is_file(csv_)
+
+		if not csv_.endswith('.csv'):
+			print("You entered the wrong file format.")
+			sys.exit()
+
+		conv_csv2xml(csv_) # meas.xml and var.xml are created
+		meas_ = str(os.getcwd()+"/meas.xml")
+		var_ = str(os.getcwd()+"/var.xml")
+
 		meas_title = get_meas_title(csv_)
-		print("CART and SAKAR executed.")	
-		conv_csv2xml(csv_)
-		check = False
-		run_xml(check, SPLC_)
+		set_sample_opts(SPLC_, CART_, SAKAR_, meas_, var_)
+
+	
+		run_csv(CART_, SAKAR_, csv_)
+		run_xml(SPLC_, meas_, var_)
 		
 	
 	else:
