@@ -14,7 +14,6 @@ For SPL Conqueror:
 		- type in the path .../Cross_ML/Code/script.a  
 	- Compile the program SPL Conqueror with Xamarin Studio  
 	- see more instructions for SPL Conqueror on https://github.com/se-passau/SPLConqueror  
-	- make sure you created/have the folder Cross_ML/Outputs and CrossML/Code/Plots
 	- change paths in Cross_ML/Code/path_settings.py accordingly
 
 

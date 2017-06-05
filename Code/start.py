@@ -80,14 +80,13 @@ def main():
 	meas_title = str()
 	check = True
 
-	input_ = input("Do you have your measurements as xml or csv?: ")
 
 	print("\nWhich algorithms do you want to include in the analysis?")
 	SPLC_ = input("SPL Conqueror? (y/n): ")
 	CART_ = input("CART? (y/n): ")
 	SAKAR_ = input("SAKAR? (y/n): ")
 
-
+	input_ = input("Do you have your measurements as xml or csv?: ")
 	
 	if input_ == 'xml':
 
