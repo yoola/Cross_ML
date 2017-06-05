@@ -11,7 +11,7 @@ For SPL Conqueror:
 	
 	- in the Xamarin environment:  
 		- do right click on folder CommandLine -> options -> Default -> arguments  
-		- type in the path .../Cross_ML/Code/script.a  
+		- type in the path .../Cross_ML/Setting_scripts/script_SPLC.a  
 	- Compile the program SPL Conqueror with Xamarin Studio  
 	- see more instructions for SPL Conqueror on https://github.com/se-passau/SPLConqueror  
 	- change paths in Cross_ML/Code/path_settings.py accordingly
