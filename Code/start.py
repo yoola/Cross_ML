@@ -1,6 +1,7 @@
 import io
 import os
 import sys
+import time
 from pathlib import Path
 from csvToxml import conv_csv2xml
 from xmlTocsv import conv_xml2csv
@@ -16,12 +17,16 @@ SPLC_exe = path_list[3]
 CART_exe = path_list[4]
 SAKAR_exe = path_list[5]
 
+all_times = [] # storing all execution times
+
+
 def Path_is_file(file_):
 
 	if not Path(file_).is_file():
 		print("No file directory.")
 		sys.exit()
 
+# get name of file to use it for the plot later on
 def get_meas_title(path_):
 
 	pos1 = path_.rfind("/")
@@ -31,6 +36,7 @@ def get_meas_title(path_):
 
 	return meas_title 
 
+# asked user for sampling options for each algorithm
 def set_sample_opts(SPLC_, CART_, SAKAR_, meas_, var_):
 
 	if(SPLC_ =="y"):
@@ -43,9 +49,9 @@ def set_sample_opts(SPLC_, CART_, SAKAR_, meas_, var_):
 
 	if(SAKAR_ == "y"):
 		print("\nSampling Options for SAKAR: ")
-		init_SAKAR()
+		init_CART()
 
-
+# run algorithms if chosen
 
 def run_xml(SPLC_, meas_, var_):
 
@@ -54,7 +60,10 @@ def run_xml(SPLC_, meas_, var_):
 		print("\nStarting SPL Conqueror")
 		print("See full.log file for progress")
 		cl_dir = SPLC_exe
+		start_time = time.time()
 		os.system("mono "+cl_dir+" "+SPLC_script)
+		end_time = time.time() - start_time
+		all_times.append("SPLC_EXECUTION_TIME in sec: "+str(end_time))
 
 
 def run_csv(CART_, SAKAR_, csv_):
@@ -63,14 +72,22 @@ def run_csv(CART_, SAKAR_, csv_):
 	if(CART_ == "y"):
 
 		print("\nStarting CART")
+		start_time = time.time()
 		os.system("RScript "+ CART_exe+ " "+ csv_)
+		end_time = time.time() - start_time
+		all_times.append("CART_EXECUTION_TIME in sec: "+str(end_time))
 		
 	if(SAKAR_ == "y"):
 
 		print("\nStarting SAKAR")
+		start_time = time.time()
 		os.system("RScript "+ SAKAR_exe+ " "+ csv_)
+		end_time = time.time() - start_time
+		all_times.append("SAKAR_EXECUTION_TIME in sec: "+str(end_time))
 
 	return csv_
+
+
 
 def main():
 
@@ -80,13 +97,14 @@ def main():
 	meas_title = str()
 	check = True
 
+	input_ = input("Do you have your measurements as xml or csv?: ")
 
 	print("\nWhich algorithms do you want to include in the analysis?")
 	SPLC_ = input("SPL Conqueror? (y/n): ")
 	CART_ = input("CART? (y/n): ")
 	SAKAR_ = input("SAKAR? (y/n): ")
 
-	input_ = input("Do you have your measurements as xml or csv?: ")
+
 	
 	if input_ == 'xml':
 
@@ -138,5 +156,6 @@ def main():
 		sys.exit()
 	
 	plot_results(SPLC_,CART_,SAKAR_, meas_title)
-
+	for i in all_times:
+		print(i)
 main()
