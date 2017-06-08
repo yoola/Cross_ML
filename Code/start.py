@@ -49,7 +49,7 @@ def set_sample_opts(SPLC_, CART_, SAKAR_, meas_, var_):
 
 	if(SAKAR_ == "y"):
 		print("\nSampling Options for SAKAR: ")
-		init_CART()
+		init_SAKAR()
 
 # run algorithms if chosen
 

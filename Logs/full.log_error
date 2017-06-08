@@ -1,16 +1,16 @@
-Required config: accesslog%;%base%;%enablesendfile%;%extendedstatus%;%followsymlinks%;%handle%;%hostnamelookups%;%inmemory%;%root%;%  base hostnamelookups enablesendfile followsymlinks accesslog extendedstatus inmemory handle 
-Required config: accesslog%;%base%;%enablesendfile%;%extendedstatus%;%followsymlinks%;%handle%;%hostnamelookups%;%inmemory%;%keepalive%;%root%;%  base hostnamelookups keepalive enablesendfile followsymlinks accesslog extendedstatus inmemory handle 
 Required config: accesslog%;%enablesendfile%;%extendedstatus%;%followsymlinks%;%handle%;%hostnamelookups%;%inmemory%;%keepalive%;%root%;%  hostnamelookups keepalive enablesendfile followsymlinks accesslog extendedstatus inmemory handle 
+Required config: accesslog%;%base%;%enablesendfile%;%extendedstatus%;%followsymlinks%;%handle%;%hostnamelookups%;%inmemory%;%keepalive%;%root%;%  base hostnamelookups keepalive enablesendfile followsymlinks accesslog extendedstatus inmemory handle 
 Required config: accesslog%;%base%;%enablesendfile%;%extendedstatus%;%followsymlinks%;%handle%;%inmemory%;%keepalive%;%root%;%  base keepalive enablesendfile followsymlinks accesslog extendedstatus inmemory handle 
-Required config: accesslog%;%base%;%enablesendfile%;%extendedstatus%;%handle%;%hostnamelookups%;%inmemory%;%keepalive%;%root%;%  base hostnamelookups keepalive enablesendfile accesslog extendedstatus inmemory handle 
+Required config: accesslog%;%base%;%enablesendfile%;%extendedstatus%;%followsymlinks%;%handle%;%hostnamelookups%;%inmemory%;%root%;%  base hostnamelookups enablesendfile followsymlinks accesslog extendedstatus inmemory handle 
 Required config: accesslog%;%base%;%extendedstatus%;%followsymlinks%;%handle%;%hostnamelookups%;%inmemory%;%keepalive%;%root%;%  base hostnamelookups keepalive followsymlinks accesslog extendedstatus inmemory handle 
-Required config: base%;%enablesendfile%;%extendedstatus%;%followsymlinks%;%handle%;%hostnamelookups%;%inmemory%;%keepalive%;%root%;%  base hostnamelookups keepalive enablesendfile followsymlinks extendedstatus inmemory handle 
+Required config: accesslog%;%base%;%enablesendfile%;%extendedstatus%;%handle%;%hostnamelookups%;%inmemory%;%keepalive%;%root%;%  base hostnamelookups keepalive enablesendfile accesslog extendedstatus inmemory handle 
 Required config: accesslog%;%base%;%enablesendfile%;%followsymlinks%;%handle%;%hostnamelookups%;%inmemory%;%keepalive%;%root%;%  base hostnamelookups keepalive enablesendfile followsymlinks accesslog inmemory handle 
-Required config: root%;%  
-Required config: hostnamelookups%;%root%;%  hostnamelookups 
 Required config: keepalive%;%root%;%  keepalive 
 Required config: enablesendfile%;%root%;%  enablesendfile 
 Required config: followsymlinks%;%root%;%  followsymlinks 
+Required config: base%;%enablesendfile%;%extendedstatus%;%followsymlinks%;%handle%;%hostnamelookups%;%inmemory%;%keepalive%;%root%;%  base hostnamelookups keepalive enablesendfile followsymlinks extendedstatus inmemory handle 
+Required config: root%;%  
+Required config: hostnamelookups%;%root%;%  hostnamelookups 
 Required config: accesslog%;%root%;%  accesslog 
 Required config: extendedstatus%;%root%;%  extendedstatus 
 Required config: inmemory%;%root%;%  inmemory 
@@ -18,27 +18,27 @@ Required config: handle%;%root%;%  handle
 Required config: extendedstatus%;%inmemory%;%root%;%  extendedstatus inmemory 
 Required config: accesslog%;%extendedstatus%;%root%;%  accesslog extendedstatus 
 Required config: accesslog%;%inmemory%;%root%;%  accesslog inmemory 
-Required config: accesslog%;%extendedstatus%;%inmemory%;%root%;%  accesslog extendedstatus inmemory 
-Required config: extendedstatus%;%followsymlinks%;%root%;%  followsymlinks extendedstatus 
-Required config: accesslog%;%followsymlinks%;%root%;%  followsymlinks accesslog 
 Required config: accesslog%;%followsymlinks%;%inmemory%;%root%;%  followsymlinks accesslog inmemory 
-Required config: accesslog%;%extendedstatus%;%followsymlinks%;%inmemory%;%root%;%  followsymlinks accesslog extendedstatus inmemory 
-Required config: enablesendfile%;%inmemory%;%root%;%  enablesendfile inmemory 
-Required config: enablesendfile%;%extendedstatus%;%root%;%  enablesendfile extendedstatus 
-Required config: enablesendfile%;%extendedstatus%;%inmemory%;%root%;%  enablesendfile extendedstatus inmemory 
-Required config: enablesendfile%;%followsymlinks%;%root%;%  enablesendfile followsymlinks 
-Required config: enablesendfile%;%extendedstatus%;%followsymlinks%;%root%;%  enablesendfile followsymlinks extendedstatus 
-Required config: followsymlinks%;%inmemory%;%root%;%  followsymlinks inmemory 
+Required config: extendedstatus%;%followsymlinks%;%root%;%  followsymlinks extendedstatus 
 Required config: accesslog%;%extendedstatus%;%followsymlinks%;%root%;%  followsymlinks accesslog extendedstatus 
 Required config: extendedstatus%;%followsymlinks%;%inmemory%;%root%;%  followsymlinks extendedstatus inmemory 
+Required config: accesslog%;%extendedstatus%;%followsymlinks%;%inmemory%;%root%;%  followsymlinks accesslog extendedstatus inmemory 
+Required config: enablesendfile%;%inmemory%;%root%;%  enablesendfile inmemory 
+Required config: accesslog%;%extendedstatus%;%inmemory%;%root%;%  accesslog extendedstatus inmemory 
+Required config: followsymlinks%;%inmemory%;%root%;%  followsymlinks inmemory 
+Required config: accesslog%;%followsymlinks%;%root%;%  followsymlinks accesslog 
+Required config: enablesendfile%;%extendedstatus%;%followsymlinks%;%root%;%  enablesendfile followsymlinks extendedstatus 
+Required config: enablesendfile%;%followsymlinks%;%inmemory%;%root%;%  enablesendfile followsymlinks inmemory 
+Required config: enablesendfile%;%extendedstatus%;%followsymlinks%;%inmemory%;%root%;%  enablesendfile followsymlinks extendedstatus inmemory 
+Required config: accesslog%;%enablesendfile%;%root%;%  enablesendfile accesslog 
 Required config: accesslog%;%enablesendfile%;%inmemory%;%root%;%  enablesendfile accesslog inmemory 
 Required config: accesslog%;%enablesendfile%;%followsymlinks%;%root%;%  enablesendfile followsymlinks accesslog 
 Required config: accesslog%;%enablesendfile%;%followsymlinks%;%inmemory%;%root%;%  enablesendfile followsymlinks accesslog inmemory 
+Required config: enablesendfile%;%extendedstatus%;%inmemory%;%root%;%  enablesendfile extendedstatus inmemory 
+Required config: enablesendfile%;%followsymlinks%;%root%;%  enablesendfile followsymlinks 
+Required config: enablesendfile%;%extendedstatus%;%root%;%  enablesendfile extendedstatus 
 Required config: accesslog%;%enablesendfile%;%extendedstatus%;%root%;%  enablesendfile accesslog extendedstatus 
 Required config: accesslog%;%enablesendfile%;%extendedstatus%;%followsymlinks%;%root%;%  enablesendfile followsymlinks accesslog extendedstatus 
-Required config: accesslog%;%enablesendfile%;%root%;%  enablesendfile accesslog 
-Required config: enablesendfile%;%followsymlinks%;%inmemory%;%root%;%  enablesendfile followsymlinks inmemory 
-Required config: enablesendfile%;%extendedstatus%;%followsymlinks%;%inmemory%;%root%;%  enablesendfile followsymlinks extendedstatus inmemory 
 Required config: accesslog%;%enablesendfile%;%extendedstatus%;%inmemory%;%root%;%  enablesendfile accesslog extendedstatus inmemory 
 Required config: accesslog%;%enablesendfile%;%extendedstatus%;%followsymlinks%;%inmemory%;%root%;%  enablesendfile followsymlinks accesslog extendedstatus inmemory 
 Required config: inmemory%;%keepalive%;%root%;%  keepalive inmemory 
@@ -187,9 +187,9 @@ Required config: followsymlinks%;%handle%;%inmemory%;%keepalive%;%root%;%  keepa
 Required config: extendedstatus%;%followsymlinks%;%handle%;%keepalive%;%root%;%  keepalive followsymlinks extendedstatus handle 
 Required config: extendedstatus%;%followsymlinks%;%handle%;%inmemory%;%keepalive%;%root%;%  keepalive followsymlinks extendedstatus inmemory handle 
 Required config: enablesendfile%;%followsymlinks%;%handle%;%keepalive%;%root%;%  keepalive enablesendfile followsymlinks handle 
-Required config: enablesendfile%;%extendedstatus%;%followsymlinks%;%handle%;%inmemory%;%keepalive%;%root%;%  keepalive enablesendfile followsymlinks extendedstatus inmemory handle 
 Required config: enablesendfile%;%extendedstatus%;%followsymlinks%;%handle%;%keepalive%;%root%;%  keepalive enablesendfile followsymlinks extendedstatus handle 
 Required config: accesslog%;%followsymlinks%;%handle%;%keepalive%;%root%;%  keepalive followsymlinks accesslog handle 
+Required config: enablesendfile%;%extendedstatus%;%followsymlinks%;%handle%;%inmemory%;%keepalive%;%root%;%  keepalive enablesendfile followsymlinks extendedstatus inmemory handle 
 Required config: accesslog%;%enablesendfile%;%followsymlinks%;%handle%;%inmemory%;%keepalive%;%root%;%  keepalive enablesendfile followsymlinks accesslog inmemory handle 
 Required config: accesslog%;%extendedstatus%;%followsymlinks%;%handle%;%keepalive%;%root%;%  keepalive followsymlinks accesslog extendedstatus handle 
 Required config: accesslog%;%enablesendfile%;%extendedstatus%;%followsymlinks%;%handle%;%keepalive%;%root%;%  keepalive enablesendfile followsymlinks accesslog extendedstatus handle 
@@ -202,41 +202,41 @@ Required config: accesslog%;%base%;%extendedstatus%;%handle%;%inmemory%;%root%;%
 Required config: enablesendfile%;%followsymlinks%;%handle%;%inmemory%;%keepalive%;%root%;%  keepalive enablesendfile followsymlinks inmemory handle 
 Required config: accesslog%;%followsymlinks%;%handle%;%inmemory%;%keepalive%;%root%;%  keepalive followsymlinks accesslog inmemory handle 
 Required config: accesslog%;%enablesendfile%;%followsymlinks%;%handle%;%keepalive%;%root%;%  keepalive enablesendfile followsymlinks accesslog handle 
-Required config: base%;%followsymlinks%;%handle%;%inmemory%;%root%;%  base followsymlinks inmemory handle 
+Required config: base%;%extendedstatus%;%followsymlinks%;%handle%;%inmemory%;%root%;%  base followsymlinks extendedstatus inmemory handle 
 Required config: accesslog%;%base%;%followsymlinks%;%handle%;%inmemory%;%root%;%  base followsymlinks accesslog inmemory handle 
-Required config: base%;%extendedstatus%;%handle%;%inmemory%;%keepalive%;%root%;%  base keepalive extendedstatus inmemory handle 
+Required config: base%;%followsymlinks%;%handle%;%inmemory%;%root%;%  base followsymlinks inmemory handle 
 Required config: accesslog%;%base%;%extendedstatus%;%followsymlinks%;%handle%;%inmemory%;%root%;%  base followsymlinks accesslog extendedstatus inmemory handle 
-Required config: base%;%handle%;%inmemory%;%keepalive%;%root%;%  base keepalive inmemory handle 
+Required config: base%;%extendedstatus%;%followsymlinks%;%handle%;%inmemory%;%keepalive%;%root%;%  base keepalive followsymlinks extendedstatus inmemory handle 
 Required config: accesslog%;%base%;%handle%;%inmemory%;%keepalive%;%root%;%  base keepalive accesslog inmemory handle 
 Required config: accesslog%;%base%;%followsymlinks%;%handle%;%inmemory%;%keepalive%;%root%;%  base keepalive followsymlinks accesslog inmemory handle 
+Required config: base%;%handle%;%inmemory%;%keepalive%;%root%;%  base keepalive inmemory handle 
+Required config: base%;%extendedstatus%;%handle%;%inmemory%;%keepalive%;%root%;%  base keepalive extendedstatus inmemory handle 
+Required config: base%;%followsymlinks%;%handle%;%inmemory%;%keepalive%;%root%;%  base keepalive followsymlinks inmemory handle 
 Required config: accesslog%;%base%;%extendedstatus%;%handle%;%inmemory%;%keepalive%;%root%;%  base keepalive accesslog extendedstatus inmemory handle 
 Required config: accesslog%;%base%;%extendedstatus%;%followsymlinks%;%handle%;%inmemory%;%keepalive%;%root%;%  base keepalive followsymlinks accesslog extendedstatus inmemory handle 
 Required config: base%;%enablesendfile%;%handle%;%inmemory%;%root%;%  base enablesendfile inmemory handle 
-Required config: base%;%enablesendfile%;%extendedstatus%;%handle%;%inmemory%;%root%;%  base enablesendfile extendedstatus inmemory handle 
-Required config: base%;%extendedstatus%;%followsymlinks%;%handle%;%inmemory%;%root%;%  base followsymlinks extendedstatus inmemory handle 
-Required config: base%;%followsymlinks%;%handle%;%inmemory%;%keepalive%;%root%;%  base keepalive followsymlinks inmemory handle 
-Required config: base%;%extendedstatus%;%followsymlinks%;%handle%;%inmemory%;%keepalive%;%root%;%  base keepalive followsymlinks extendedstatus inmemory handle 
+Required config: base%;%enablesendfile%;%handle%;%inmemory%;%keepalive%;%root%;%  base keepalive enablesendfile inmemory handle 
 Required config: accesslog%;%base%;%enablesendfile%;%handle%;%inmemory%;%root%;%  base enablesendfile accesslog inmemory handle 
 Required config: accesslog%;%base%;%enablesendfile%;%extendedstatus%;%handle%;%inmemory%;%root%;%  base enablesendfile accesslog extendedstatus inmemory handle 
-Required config: base%;%enablesendfile%;%handle%;%inmemory%;%keepalive%;%root%;%  base keepalive enablesendfile inmemory handle 
+Required config: base%;%enablesendfile%;%extendedstatus%;%handle%;%inmemory%;%root%;%  base enablesendfile extendedstatus inmemory handle 
 Required config: accesslog%;%base%;%enablesendfile%;%handle%;%inmemory%;%keepalive%;%root%;%  base keepalive enablesendfile accesslog inmemory handle 
 Required config: base%;%enablesendfile%;%extendedstatus%;%handle%;%inmemory%;%keepalive%;%root%;%  base keepalive enablesendfile extendedstatus inmemory handle 
 Required config: accesslog%;%base%;%enablesendfile%;%extendedstatus%;%handle%;%inmemory%;%keepalive%;%root%;%  base keepalive enablesendfile accesslog extendedstatus inmemory handle 
-Required config: base%;%enablesendfile%;%followsymlinks%;%handle%;%inmemory%;%root%;%  base enablesendfile followsymlinks inmemory handle 
-Required config: base%;%enablesendfile%;%extendedstatus%;%followsymlinks%;%handle%;%inmemory%;%root%;%  base enablesendfile followsymlinks extendedstatus inmemory handle 
-Required config: base%;%enablesendfile%;%followsymlinks%;%handle%;%inmemory%;%keepalive%;%root%;%  base keepalive enablesendfile followsymlinks inmemory handle 
 Required config: base%;%enablesendfile%;%extendedstatus%;%followsymlinks%;%handle%;%inmemory%;%keepalive%;%root%;%  base keepalive enablesendfile followsymlinks extendedstatus inmemory handle 
 Required config: accesslog%;%base%;%enablesendfile%;%followsymlinks%;%handle%;%inmemory%;%root%;%  base enablesendfile followsymlinks accesslog inmemory handle 
 Required config: accesslog%;%base%;%enablesendfile%;%followsymlinks%;%handle%;%inmemory%;%keepalive%;%root%;%  base keepalive enablesendfile followsymlinks accesslog inmemory handle 
 Required config: accesslog%;%base%;%enablesendfile%;%extendedstatus%;%followsymlinks%;%handle%;%inmemory%;%root%;%  base enablesendfile followsymlinks accesslog extendedstatus inmemory handle 
 Required config: handle%;%hostnamelookups%;%root%;%  hostnamelookups handle 
-Required config: handle%;%hostnamelookups%;%inmemory%;%root%;%  hostnamelookups inmemory handle 
-Required config: extendedstatus%;%handle%;%hostnamelookups%;%root%;%  hostnamelookups extendedstatus handle 
+Required config: base%;%enablesendfile%;%followsymlinks%;%handle%;%inmemory%;%keepalive%;%root%;%  base keepalive enablesendfile followsymlinks inmemory handle 
+Required config: base%;%enablesendfile%;%followsymlinks%;%handle%;%inmemory%;%root%;%  base enablesendfile followsymlinks inmemory handle 
 Required config: extendedstatus%;%handle%;%hostnamelookups%;%inmemory%;%root%;%  hostnamelookups extendedstatus inmemory handle 
 Required config: accesslog%;%handle%;%hostnamelookups%;%root%;%  hostnamelookups accesslog handle 
 Required config: accesslog%;%extendedstatus%;%handle%;%hostnamelookups%;%root%;%  hostnamelookups accesslog extendedstatus handle 
 Required config: accesslog%;%handle%;%hostnamelookups%;%inmemory%;%root%;%  hostnamelookups accesslog inmemory handle 
 Required config: accesslog%;%extendedstatus%;%handle%;%hostnamelookups%;%inmemory%;%root%;%  hostnamelookups accesslog extendedstatus inmemory handle 
+Required config: extendedstatus%;%handle%;%hostnamelookups%;%root%;%  hostnamelookups extendedstatus handle 
+Required config: base%;%enablesendfile%;%extendedstatus%;%followsymlinks%;%handle%;%inmemory%;%root%;%  base enablesendfile followsymlinks extendedstatus inmemory handle 
+Required config: handle%;%hostnamelookups%;%inmemory%;%root%;%  hostnamelookups inmemory handle 
 Required config: followsymlinks%;%handle%;%hostnamelookups%;%root%;%  hostnamelookups followsymlinks handle 
 Required config: followsymlinks%;%handle%;%hostnamelookups%;%inmemory%;%root%;%  hostnamelookups followsymlinks inmemory handle 
 Required config: accesslog%;%followsymlinks%;%handle%;%hostnamelookups%;%root%;%  hostnamelookups followsymlinks accesslog handle 
