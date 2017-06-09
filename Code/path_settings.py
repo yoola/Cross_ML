@@ -6,7 +6,7 @@ def init_paths():
 	
 	path_list = []
 	# scripts for sampling options
-	# Outputs folder must be created
+	# Setting_scripts folder must be already created, not so the files
 	path_list.append("/Users/jula/Github/Cross_ML/Setting_scripts/script_SPLC.a") #0
 	path_list.append("/Users/jula/Github/Cross_ML/Setting_scripts/script_CART.R") #1
 	path_list.append("/Users/jula/Github/Cross_ML/Setting_scripts/script_SAKAR.R") #2
@@ -19,6 +19,7 @@ def init_paths():
 	path_list.append("/Users/jula/Github/Cross_ML/ces_modified/start_SAKAR.R") #5
 
 	# output file paths
+	# Logs folder must be already created, not so the files
 	path_list.append("/Users/jula/Github/Cross_ML/Logs/full.log") #6
 	path_list.append("/Users/jula/Github/Cross_ML/Logs/output_CART.csv") #7
 	path_list.append("/Users/jula/Github/Cross_ML/Logs/output_sakar.csv") #8

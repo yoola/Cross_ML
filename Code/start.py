@@ -52,7 +52,6 @@ def set_sample_opts(SPLC_, CART_, SAKAR_, meas_, var_):
 		init_SAKAR()
 
 # run algorithms if chosen
-
 def run_xml(SPLC_, meas_, var_):
 
 	if(SPLC_ =="y"):

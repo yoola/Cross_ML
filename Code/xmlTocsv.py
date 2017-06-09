@@ -27,7 +27,6 @@ def conv_xml2csv(meas_path, var_path):
 	 		
 	
 	# parse measurement file for chosen configurations and performance number
-	
 	tree = ET.parse(meas_path)
 	root = tree.getroot()
 	
@@ -52,7 +51,6 @@ def conv_xml2csv(meas_path, var_path):
 	p = 0;
 
 	# check if feature is in list (a 'Y' in csv) or not (a 'N' in csv)
-	
 	for config in config_values:
 	
 		for i in range(0,len(name)):
@@ -67,7 +65,6 @@ def conv_xml2csv(meas_path, var_path):
 	
 	
 	# writing all selected xml data to csv file
-
 	with open('test.csv','w', newline ='') as fp:
 		a = csv.writer(fp, delimiter=',')
 		name.append('PERF')

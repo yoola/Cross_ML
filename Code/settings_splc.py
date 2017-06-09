@@ -19,10 +19,8 @@ def init_SPLC(meas_, var_):
 	fws_ = input("Feature wise sampling? (y/n): ")
 	pws_ = input("Pairwise sampling? (y/n): ")
 	binaryft_ = input("Are all features binary? (y/n): ")
-
 	
-	#build script.a 
-	
+	#build script.a 	
 	str1 = str("log "+SPLC_log)
 	#str2 = str("limitFeatureSize:False featureSizeTreshold:4")
 	#str3 = str("mlSettings abortError:1 minImprovementPerRound:0.01 numberOfRounds:100 withHierarchy:false")
@@ -54,7 +52,6 @@ def init_SPLC(meas_, var_):
 	str12 = str("clean-sampling")
 	str13 = str("# clean-learning")
 	str14 = str("# clean-global ")
-	
 	
 	script_ = open(SPLC_script, 'w')
 	script_.write(str1 +'\n'+str2+'\n'+str3 +'\n'+str4+'\n'+str5 +'\n'+str6+'\n'+str7 +'\n'+str8+'\n'+str9 

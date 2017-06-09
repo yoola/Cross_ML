@@ -18,13 +18,11 @@ def conv_csv2xml(filepath):
 	
 	script1 = open("var.xml", 'w')
 	
-	
 	elem_old = str()
 	check = False
 	elem_childs = []
 	
 	# csv_list[0][:] contains feature names
-	
 	for elem in csv_list[0][0:csv_size-1]:
 	
 		if elem_old:
@@ -39,7 +37,6 @@ def conv_csv2xml(filepath):
 	
 	
 	# write elements into script
-	
 	script1.write("<vm name=\"var_model\"> \n\t <binaryOptions>")
 	elem_old = str()
 	
@@ -78,8 +75,7 @@ def conv_csv2xml(filepath):
 	script1.close()
 	
 	
-	# create measurement xml
-	
+	# create measurement xml	
 	script2 = open("meas.xml", 'w')
 	script2.write("<results>")
 	
