@@ -21,15 +21,9 @@ initParams()
 analyse() #calls analyseCART();
 
 
-
-
-
-
-
 #source(file="/Users/jula/Github/ces/source/projective.r")
 #output: correlationcoefficient of functions (log, weiss, power, exp)
 #go();
-
 
 
 # Outputs Sample-Size Accuracy in +10 steps
@@ -41,10 +35,8 @@ analyse() #calls analyseCART();
 #projective: black = exponentiell, green = power, 
 #triangle = optimal sample size, rectangle = inital datapoints for projection
 #progressiv: red
-#krass hardcodiert
 #source('graphplot.R') 
 
 # histogram with accuracies for all datasets (Apache, SQLite, x264,..)
 # grey = progressiv, black = projective
-# krass hardcodiert
 #source('/Users/jula/Github/ces/source/histogram.R') 

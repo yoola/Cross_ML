@@ -10,7 +10,7 @@ library(gbm)
 library(rattle)
 
 source(file="/Users/jula/Github/Cross_ML/ces_modified/path_settings.R")
-source(file=script_SAKAR)
+source(file=script_SARKAR)
 
 # Initialization ##################################################################################
 initData <- function(testSet){
@@ -22,12 +22,12 @@ initData <- function(testSet){
 
 	#cat("Please enter address of output folder (for example: /Useres/Data/Output)", '\n')
 	#outputAddress <<- scan(file = "", what = " ", n = 1, quiet = TRUE)
-	outputAddress <<- Output_SAKAR
+	outputAddress <<- Output_SARKAR
 	# added one <
 	
 	#cat("Please enter output filename", "\n")
 	#outputFilename <<- scan(file = "", what = " ", n = 1, quiet = TRUE)
-	outputFilename <<- "output_sakar"
+	outputFilename <<- "output_sarkar"
 	
 	# Load the data
 	dataAddr <<- paste("file:///", fileAddress, sep="")
@@ -45,7 +45,7 @@ initGeneralParams <- function(){
 	#print("Please enter number of times experiment should be repeated")
 	#seedRepetitions <<- scan(file = "", what = integer(), n = 1, quiet = FALSE)
 	seedRepetitions <<- numberOfRounds #5
-	crv$seed <- 1
+	crv$seed <- 2
 	
 	#print("Please enter name of the method that will be used for experiment")
 	#methodName <<- scan(file = "", what = " ", n = 1, quiet = TRUE)
@@ -71,7 +71,7 @@ initSamplingParams <- function(){
 	
 	#cat("Please enter sampling range upper value", '\n')
 	#samplingUpper <<- scan(file = "", what = integer(), n = 1, quiet = FALSE)
-	samplingUpper <<- (floor(obsCount/2) %/%  samplingProgressionBase)*samplingProgressionBase
+	samplingUpper <<- sampleAmount
 }
 
 initMinSplitParams <- function(){
@@ -115,7 +115,7 @@ initComplexityParams <- function(){
 	
 	#cat("Please enter complexity step", '\n')
 	#complexStep <<- scan(file = "", what = numeric(), n = 1, quiet = FALSE)
-	complexStep <- minImprovementPerRound #0.0001
+	complexStep <<- minImprovementPerRound #0.0001
 }
 
 initCARTParams <- function(){
@@ -169,6 +169,7 @@ analyse <- function(){
 	{
 		samplingVector <<- samplingVector * featureCount
 	}
+
 	
 	# Analyse data ################################################################################
 	analyseCART()
@@ -177,14 +178,15 @@ analyse <- function(){
 analyseCART <- function()
 {
 	# Utility variables ###########################################################################
+	faultRate_old <- 0
 	faultDataset <- NULL
 	resultDataset <- NULL
-	resultDataset <- rbind(resultDataset, c("Sampling Amount", "MaxDepth", "Fault Rate"))
+	resultDataset <- rbind(resultDataset, c("Sampling Amount", "Fault Rate"))
 	crs$dataset <- read.csv(dataAddr, na.strings=c(".", "NA", "", "?"), strip.white=TRUE, encoding="UTF-8")
 	
 	# Main loop ###################################################################################
 	for(samplingIter in samplingVector){
-		for(maxDepthIter in maxDepthLower:maxDepthUpper){
+
 					for(seedIter in 1:seedRepetitions){
 						
 						# setting mandatory features for SQLite
@@ -197,7 +199,7 @@ analyseCART <- function()
 						#colnames(conf) <<- setdiff(colnames(crs$dataset), mand)
 						
 						# Build the training/validate/test datasets ###############################################
-						set.seed(seedIter)
+						#set.seed(seedIter)
 						crs$nobs <- nrow(crs$dataset)
 						crs$sample <- crs$train <- sample(nrow(crs$dataset), samplingIter)
 						crs$validate <- NULL
@@ -227,14 +229,13 @@ analyseCART <- function()
 						print("Training Done")
 						# Building a CART model ###################################################################
 						require(rpart, quietly=TRUE)
-						set.seed(seedIter)
+						#set.seed(seedIter)
 						crs$rpart <- rpart(PERF ~ .,
 								data=crs$dataset[crs$train, c(crs$input, crs$target)],method="anova",
 								parms=list(split="information"),
 								control=rpart.control(
 										minsplit=ms,
 										minbucket=mb,
-										maxdepth=maxDepthIter,
 										cp=0,
 										usesurrogate=0,
 										maxsurrogate=0))
@@ -251,20 +252,27 @@ analyseCART <- function()
 							faultDataset <- cbind(faultDataset, faultRate)
 						}
 						
-						
-						
-						
-					} # for(seedIter in 1:seedRepetitions)
-					
 					# Process all results #########################################################################
 					faultRate <- mean(rowMeans(faultDataset))
 					# print(faultRate)
-					resultDataset <- rbind(resultDataset, c(samplingIter,
-									maxDepthIter, faultRate))
+					resultDataset <- rbind(resultDataset, c(samplingIter, faultRate))
 					
 					faultDataset <- NULL
+						
+						
+					} # for(seedIter in 1:seedRepetitions)
+
+					if(abs(faultRate-faultRate_old)<complexStep){
+
+							print("Termination reason: minImprovementPerRound")
+							break
+						}
+
+					faultRate_old <- faultRate
 					
-				} # for(maxDepthIter in maxDepthLower:maxDepthUpper)
+					
+					
+				 # for(maxDepthIter in maxDepthLower:maxDepthUpper)
 				#complete <- complete()
 				#if(complete){
 				#	break;

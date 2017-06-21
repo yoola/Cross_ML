@@ -9,20 +9,20 @@ def init_paths():
 	# Setting_scripts folder must be already created, not so the files
 	path_list.append("/Users/jula/Github/Cross_ML/Setting_scripts/script_SPLC.a") #0
 	path_list.append("/Users/jula/Github/Cross_ML/Setting_scripts/script_CART.R") #1
-	path_list.append("/Users/jula/Github/Cross_ML/Setting_scripts/script_SAKAR.R") #2
+	path_list.append("/Users/jula/Github/Cross_ML/Setting_scripts/script_SARKAR.R") #2
 	
 	# execution file for SPL Conqueror
 	path_list.append("/Users/jula/Github/SPLConqueror/SPLConqueror/CommandLine/bin/Debug/CommandLine.exe") #3
 	
-	# execution files for CART and SAKAR
+	# execution files for CART and SARKAR
 	path_list.append("/Users/jula/Github/Cross_ML/ces_modified/start_CART.R") #4
-	path_list.append("/Users/jula/Github/Cross_ML/ces_modified/start_SAKAR.R") #5
+	path_list.append("/Users/jula/Github/Cross_ML/ces_modified/start_SARKAR.R") #5
 
 	# output file paths
 	# Logs folder must be already created, not so the files
 	path_list.append("/Users/jula/Github/Cross_ML/Logs/full.log") #6
 	path_list.append("/Users/jula/Github/Cross_ML/Logs/output_CART.csv") #7
-	path_list.append("/Users/jula/Github/Cross_ML/Logs/output_sakar.csv") #8
+	path_list.append("/Users/jula/Github/Cross_ML/Logs/output_sarkar.csv") #8
 
 	# Output folder path
 	# Plots folder must be created

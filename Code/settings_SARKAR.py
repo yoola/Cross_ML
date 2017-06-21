@@ -2,10 +2,9 @@ import os
 from path_settings import init_paths
 
 path_list = init_paths()
-CART_script = path_list[1]
+SARKAR_script = path_list[2]
 
-
-def init_CART(numberofmeas_):
+def init_SARKAR(numberofmeas_):
 
 	minIPR_ = input("Termination after which minimum improvement per round (default(0.01): ENTER)?: ")
 	numberofrounds_ = input("Number of rounds for the same sample amount (default(5): ENTER): ")
@@ -18,7 +17,7 @@ def init_CART(numberofmeas_):
 	if(sampleamount_==""):
 		sampleamount_ = str(int(numberofmeas_/2))
 	
-	#build script_CART.R 	
+	#build script_SARKAR.R 	
 	str1 = str("numberOfRounds <- "+numberofrounds_+" #number of times experiment should be repeated")
 	str2 = str("minImprovementPerRound <- "+minIPR_+" #complexity step")
 	str3 = str("sampleAmount <- "+sampleamount_+" #complexity step")
@@ -29,8 +28,8 @@ def init_CART(numberofmeas_):
 	str8 = str("#complexLower #complexity range lower value #default = 0")
 	str9 = str("#complexUpper #complexity range upper value # default = 0.001")
 
-	script_ = open(CART_script, 'w')
-	script_.write(str1 +'\n'+str2+'\n'+str3 +'\n'+str4+'\n'+str5 +'\n'+str6+'\n'+str7 +'\n'+str8 +'\n'+str9)
+	script_ = open(SARKAR_script, 'w')
+	script_.write(str1 +'\n'+str2+'\n'+str3 +'\n'+str4+'\n'+str5 +'\n'+str6+'\n'+str7 +'\n'+str8)
 	script_.close()
 
 	return numberofrounds_

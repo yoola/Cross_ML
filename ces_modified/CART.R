@@ -72,7 +72,7 @@ initSamplingParams <- function(){
 	
 	#cat("Please enter sampling range upper value", '\n')
 	#samplingUpper <<- scan(file = "", what = integer(), n = 1, quiet = FALSE)
-	samplingUpper <<- (floor(obsCount/2) %/%  samplingProgressionBase)*samplingProgressionBase
+	samplingUpper <<- sampleAmount	
 }
 
 initMinSplitParams <- function(){
@@ -116,7 +116,7 @@ initComplexityParams <- function(){
 	
 	#cat("Please enter complexity step", '\n')
 	#complexStep <<- scan(file = "", what = numeric(), n = 1, quiet = FALSE)
-	complexStep <- minImprovementPerRound  #0.0001
+	complexStep <<- minImprovementPerRound  #0.0001
 }
 
 initCARTParams <- function(){
@@ -178,19 +178,19 @@ analyse <- function(){
 analyseCART <- function()
 {
 	# Utility variables ###########################################################################
+	faultRate_old <- 0
 	faultDataset <- NULL
 	resultDataset <- NULL
 	resultDataset <- rbind(resultDataset, c("Sampling Amount", "Fault Rate"))
-	
-	
 	
 	# Main loop ###################################################################################
 		for(samplingIter in samplingVector){
 
 					current.faultset <- NULL
 					for(seedIter in 1:seedRepetitions){
+
 							# Build the training/validate/test datasets ###############################################
-							set.seed(seedIter)
+							#set.seed(seedIter)
 							crs$nobs <- nrow(crs$dataset)
 							crs$sample <- crs$train <- sample(nrow(crs$dataset), samplingIter)
 							crs$validate <- NULL
@@ -220,7 +220,7 @@ analyseCART <- function()
 							print("Training Done")
 							# Building a CART model ###################################################################
 							require(rpart, quietly=TRUE)
-							set.seed(seedIter)
+							#set.seed(seedIter)
 							crs$rpart <- rpart(PERF ~ .,
 									data=crs$dataset[crs$train, c(crs$input, crs$target)],method="anova",
 									parms=list(split="information"),
@@ -240,6 +240,7 @@ analyseCART <- function()
 							# Extract the relevant variables from the dataset
 							sdata <- subset(crs$dataset[crs$test,], select=c("PERF"))
 							faultRate <- abs(sdata - crs$pr) / sdata * 100
+						
 							if(is.null(faultDataset)){
 								faultDataset <- faultRate
 							}else{
@@ -252,21 +253,32 @@ analyseCART <- function()
 								current.faultset <- cbind(current.faultset, faultRate)
 							}
 							
-						} # for(seedIter in 1:seedRepetitions)
+						 
 						
 						# Process all results #########################################################################
 						#outputFilename.split <- paste(outputFilename,samplingIter, sep="_")
 						#address01 <- paste(outputAddress, "/", outputFilename.split, ".csv", sep="")
 						#faultSet.row <- t(as.matrix(colMeans(current.faultset)))
 						#write.csv(faultSet.row, file=address01,row.names=FALSE)
+						#
 						
 						faultRate <- mean(rowMeans(faultDataset))
 						# print(faultRate)
 						resultDataset <- rbind(resultDataset, c(samplingIter, faultRate))
-						
+						#print("faultRate")
+						#print(faultRate)
+
+
 						faultDataset <- NULL
+						}# for(seedIter in 1:seedRepetitions)
 						
-					
+					if(abs(faultRate-faultRate_old)<complexStep){
+
+							print("Termination reason: minImprovementPerRound")
+							break
+						}
+
+					faultRate_old <- faultRate
 				
 		} # for(samplingIter in samplingLower:samplingUpper)
 	
