@@ -11,6 +11,7 @@ def init_paths():
 	path_list.append("/Users/jula/Github/Cross_ML/Setting_scripts/script_CART.R") #1
 	path_list.append("/Users/jula/Github/Cross_ML/Setting_scripts/script_SARKAR.R") #2
 	
+	#
 	# execution file for SPL Conqueror
 	path_list.append("/Users/jula/Github/SPLConqueror/SPLConqueror/CommandLine/bin/Debug/CommandLine.exe") #3
 	
@@ -27,5 +28,10 @@ def init_paths():
 	# Output folder path
 	# Plots folder must be created
 	path_list.append("Plots/") #9
+
+	# build summarizing log file
+	path_list.append("/Users/jula/Github/Cross_ML/Logs/logAll_SPLC.R") #10
+	path_list.append("/Users/jula/Github/Cross_ML/Logs/logAll_CART.R") #11
+	path_list.append("/Users/jula/Github/Cross_ML/Logs/logAll_SARKAR.R") #12
 
 	return path_list

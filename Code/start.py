@@ -6,9 +6,9 @@ from pathlib import Path
 from csvToxml import conv_csv2xml
 from xmlTocsv import conv_xml2csv
 from parse_plot_logs import plot_results
-from settings_splc import init_SPLC
-from settings_CART import init_CART
-from settings_SARKAR import init_SARKAR
+from settings_splc import init_SPLC, change_script_SPLC, parse_script_SPLC
+from settings_CART import init_CART, change_script_CART, parse_script_CART
+from settings_SARKAR import init_SARKAR, change_script_SARKAR, parse_script_SARKAR
 from path_settings import init_paths
 
 path_list = init_paths()
@@ -16,10 +16,19 @@ SPLC_script = path_list[0]
 SPLC_exe = path_list[3]
 CART_exe = path_list[4]
 SARKAR_exe = path_list[5]
+SPLC_logAll = path_list[10]
+CART_logAll = path_list[11]
+SARKAR_logAll = path_list[12]
 
-all_times = [] # storing all execution times
 
-def CountMeas(file_):
+def append_time_to_script(time_, script_path):
+
+	script_ = open(script_path, 'a')
+	script_.write("; executionTime: "+time_+"\n")
+	script_.close()
+
+
+def count_meas(file_):
 
 	with open(file_,'r') as f:
 			row_count = sum(1 for row in f)
@@ -44,58 +53,66 @@ def get_meas_title(path_):
 	return meas_title 
 
 # asked user for sampling options for each algorithm
-def set_sample_opts_SPLC(SPLC_, meas_, var_, numberofmeas_):
+def set_sample_opts(SPLC_, CART_, SARKAR_, meas_, var_, numberofmeas_):
 
 	if(SPLC_ =="y"):
 		print("\nSampling Options for SPL Conqueror: ")
 		init_SPLC(meas_, var_, numberofmeas_)
 
-def set_sample_opts_CART(CART_, meas_, var_, numberofmeas_):
-
 	if(CART_ == "y"):
 		print("\nSampling Options for CART: ")
-		numberofrounds_ = init_CART(numberofmeas_)
-		return numberofrounds_
-
-def set_sample_opts_SARKAR(SARKAR_, meas_, var_, numberofmeas_):
+		init_CART(numberofmeas_)
 
 	if(SARKAR_ == "y"):
 		print("\nSampling Options for SARKAR: ")
-		numberofrounds_ = init_SARKAR(numberofmeas_)
-		return numberofrounds_
+		init_SARKAR(numberofmeas_)
 
 # run algorithms if chosen
-def run_xml(SPLC_, meas_, var_):
+def run_xml(SPLC_, meas_, var_, numberofmeas_, repeat_run_SPLC):
 
 	if(SPLC_ =="y"):
 
-		print("\nStarting SPL Conqueror")
-		print("See full.log file for progress")
-		cl_dir = SPLC_exe
-		start_time = time.time()
-		os.system("mono "+cl_dir+" "+SPLC_script) # für Windows ändern
-		end_time = time.time() - start_time
-		all_times.append("SPLC_EXECUTION_TIME in sec: "+str(end_time))
+		for i in range(0,repeat_run_SPLC):
+			print("\nStarting SPL Conqueror")
+			print("Number of execution: "+str(i+1))
+			print("See full.log file for progress")
+			cl_dir = SPLC_exe
+			start_time = time.time()
+			os.system("mono "+cl_dir+" "+SPLC_script) # für Windows ändern
+			end_time = time.time() - start_time
+			print("SPLC_EXECUTION_TIME in sec: "+str(end_time))
+			parse_script_SPLC(str(end_time))
+			change_script_SPLC(meas_, var_, numberofmeas_)
 
 
-def run_csv(CART_, SARKAR_, csv_):
+def run_csv(CART_, SARKAR_, csv_, repeat_run_CART, repeat_run_SARKAR):
 
 
 	if(CART_ == "y"):
 
-		print("\nStarting CART")
-		start_time = time.time()
-		os.system("RScript "+ CART_exe+ " "+ csv_)
-		end_time = time.time() - start_time
-		all_times.append("CART_EXECUTION_TIME in sec: "+str(end_time))
+		for i in range(0,repeat_run_CART):
+
+			print("\nStarting CART")
+			print("Number of execution: "+str(i+1))
+			start_time = time.time()
+			os.system("RScript "+ CART_exe+ " "+ csv_)
+			end_time = time.time() - start_time
+			print("CART_EXECUTION_TIME in sec: "+str(end_time))
+			parse_script_CART(str(end_time))
+			change_script_CART()
+			
 		
 	if(SARKAR_ == "y"):
 
-		print("\nStarting SARKAR")
-		start_time = time.time()
-		os.system("RScript "+ SARKAR_exe+ " "+ csv_)
-		end_time = time.time() - start_time
-		all_times.append("SARKAR_EXECUTION_TIME in sec: "+str(end_time))
+		for i in range(0,repeat_run_SARKAR):
+			print("\nStarting SARKAR")
+			print("Number of execution: "+str(i+1))
+			start_time = time.time()
+			os.system("RScript "+ SARKAR_exe+ " "+ csv_)
+			end_time = time.time() - start_time
+			print("SARKAR_EXECUTION_TIME in sec: "+str(end_time))
+			parse_script_SARKAR(str(end_time))
+			change_script_SARKAR()
 
 	return csv_
 
@@ -108,18 +125,24 @@ def main():
 	csv_ = str()
 	meas_title = str()
 	check = True
-	numberrounds_CART = 1
-	numberrounds_SARKAR = 1
+	repeat_run_SPLC = 0
+	repeat_run_CART = 0
+	repeat_run_SARKAR = 0
 
 
 	input_ = input("Do you have your measurements as xml or csv?: ")
 
 	print("\nWhich algorithms do you want to include in the analysis?")
 	SPLC_ = input("SPL Conqueror? (y/n): ")
+	if SPLC_ == "y":
+		repeat_run_SPLC = int(input("How often do you want to run it?: "))
 	CART_ = input("CART? (y/n): ")
+	if CART_ =="y":
+		repeat_run_CART = int(input("How often do you want to run it?: "))
 	SARKAR_ = input("SARKAR? (y/n): ")
-
-
+	if SARKAR_ =="y":
+		repeat_run_SARKAR = int(input("How often do you want to run it?: "))
+		
 	
 	if input_ == 'xml':
 
@@ -136,15 +159,13 @@ def main():
 
 		conv_xml2csv(meas_,var_) # test.csv is created
 		csv_ = str(os.getcwd()+"/test.csv")
-		numberofmeas =CountMeas(csv_);
+		numberofmeas =count_meas(csv_);
 
 		meas_title = get_meas_title(var_)
-		set_sample_opts_SPLC(SPLC_, meas_, var_, numberofmeas)
-		numberrounds_CART = set_sample_opts_CART(CART_, meas_, var_, numberofmeas)
-		numberrounds_SAKAR = set_sample_opts_SARKAR(SARKAR_, meas_, var_, numberofmeas)
+		set_sample_opts(SPLC_, CART_, SARKAR_, meas_, var_, numberofmeas)
 
-		run_xml(SPLC_, meas_, var_)
-		run_csv(CART_, SARKAR_, csv_)
+		run_xml(SPLC_, meas_, var_, numberofmeas, repeat_run_SPLC)
+		run_csv(CART_, SARKAR_, csv_, repeat_run_CART, repeat_run_SARKAR)
 	
 	
 	elif input_ == 'csv':
@@ -157,26 +178,22 @@ def main():
 			print("You entered the wrong file format.")
 			sys.exit()
 
-		numberofmeas =CountMeas(csv_);
+		numberofmeas =count_meas(csv_);
 		conv_csv2xml(csv_) # meas.xml and var.xml are created
 		meas_ = str(os.getcwd()+"/meas.xml")
 		var_ = str(os.getcwd()+"/var.xml")
 
 		meas_title = get_meas_title(csv_)
-		set_sample_opts_SPLC(SPLC_, meas_, var_, numberofmeas)
-		numberrounds_CART = set_sample_opts_CART(CART_, meas_, var_, numberofmeas)
-		numberrounds_SARKAR = set_sample_opts_SARKAR(SARKAR_, meas_, var_, numberofmeas)
+		set_sample_opts(SPLC_, CART_, SARKAR_, meas_, var_, numberofmeas)
 	
-		run_csv(CART_, SARKAR_, csv_)
-		run_xml(SPLC_, meas_, var_)
+		run_csv(CART_, SARKAR_, csv_, repeat_run_CART, repeat_run_SARKAR)
+		run_xml(SPLC_, meas_, var_, numberofmeas, repeat_run_SPLC)
 		
 	
 	else:
 		print("No valid input format.")
 		sys.exit()
 
-	plot_results(SPLC_,CART_,SARKAR_, meas_title, numberrounds_CART, numberrounds_SARKAR)
-	for i in all_times:
-		print(i)
+	plot_results(SPLC_,CART_,SARKAR_, meas_title)
 
 main()

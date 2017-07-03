@@ -3,14 +3,17 @@ import matplotlib
 import statistics as stats
 from pathlib import Path
 from path_settings import init_paths
+from findstring import find_value
 path_list = init_paths()
 
+CART_script = path_list[1]
+SARKAR_script = path_list[2]
 SPLC_log = path_list[6]
 CART_log = path_list[7]
 SARKAR_log = path_list[8]
 plot_dir = path_list[9]
 
-def plot_SCS(file_path, meas_title, title, key_char, cut, key_str, numberofrounds, x_axis, y_axis):
+def plot_SCS(file_path, meas_title, title, key_char, cut, key_str, numberOfRepPerRound, x_axis, y_axis):
 
 	counter = 0 #count number of lines
 	fault_rate = []
@@ -18,7 +21,7 @@ def plot_SCS(file_path, meas_title, title, key_char, cut, key_str, numberofround
 	deviation_ = []
 	deviation_neg_ = []
 	last_elem = 0
-	step = int(numberofrounds) #round number
+	step = int(numberOfRepPerRound) #round number
 
 	with open(file_path) as f:
 		check = False
@@ -32,10 +35,15 @@ def plot_SCS(file_path, meas_title, title, key_char, cut, key_str, numberofround
 			if key_str in line: # Finding string to start parsing document
 				check = True
 
+
+
+	print("counter: "+str(counter))
+	print("step: "+str(step))
 	numberofmeas_ = int(counter/step)
+	print("numberofmeas: "+str(numberofmeas_))
 
 	# plotting mean and standard deviation for algos
-	#  with more rounds than 1
+	#  with more repetitions per rounds than 1
 	if(step >1):
 
 		for i in range(0,counter,step):
@@ -74,11 +82,13 @@ def plot_SCS(file_path, meas_title, title, key_char, cut, key_str, numberofround
 	f.close()
 
 
-def plot_results(SPLC_,CART_,SARKAR_, meas_title, rounds_CART, rounds_SARKAR):
+def plot_results(SPLC_,CART_,SARKAR_, meas_title):
 
 	if(SPLC_ == "y"):
-		plot_SCS(SPLC_log,meas_title, "SPL_Conqueror", ";", 1, "Termination", 1, "sampling amount", "test error")
+		plot_SCS(SPLC_log,meas_title, "SPL_Conqueror", ";", 1, "Termination", 1, "number of rounds", "test error")
 	if(CART_ == "y"):
-		plot_SCS(CART_log, meas_title, "CART", ",", 2, "Sampling", rounds_CART, "sampling amount", "fault rate")
+		number_of_rounds_CART = find_value(CART_script, "numberOfRounds <- ")
+		plot_SCS(CART_log, meas_title, "CART", ",", 2, "Sampling", number_of_rounds_CART, "number of rounds", "fault rate")
 	if(SARKAR_=="y"):
-		plot_SCS(SARKAR_log, meas_title, "Sarkar", ",", 2, "Sampling", rounds_SARKAR, "sampling amount", "fault rate")
+		number_of_rounds_SARKAR = find_value(SARKAR_script, "numberOfRounds <- ")
+		plot_SCS(SARKAR_log, meas_title, "Sarkar", ",", 2, "Sampling", number_of_rounds_SARKAR, "number of rounds", "fault rate")

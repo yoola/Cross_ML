@@ -1,6 +1,6 @@
-numberOfRounds <- 5 #number of times experiment should be repeated
-minImprovementPerRound <- 0.01 #complexity step
-sampleAmount <- 96 #complexity step
+numberOfRounds <- 1; #number of times experiment should be repeated
+minImprovementPerRound <- 0.017728456756325596; #complexity step
+sampleAmount <- 33; #complexity step
 #progression base #(default = 1)
 #sampling range lower value #(default = 1)
 #sampling range upper value #(default = 1)
