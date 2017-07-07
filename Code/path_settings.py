@@ -21,9 +21,9 @@ def init_paths():
 
 	# output file paths
 	# Logs folder must be already created, not so the files
-	path_list.append("/Users/jula/Github/Cross_ML/Logs/full.log") #6
+	path_list.append("/Users/jula/Github/Cross_ML/Logs/full_SPLC.log") #6
 	path_list.append("/Users/jula/Github/Cross_ML/Logs/output_CART.csv") #7
-	path_list.append("/Users/jula/Github/Cross_ML/Logs/output_sarkar.csv") #8
+	path_list.append("/Users/jula/Github/Cross_ML/Logs/output_SARKAR.csv") #8
 
 	# Output folder path
 	# Plots folder must be created
@@ -33,5 +33,21 @@ def init_paths():
 	path_list.append("/Users/jula/Github/Cross_ML/Logs/logAll_SPLC.R") #10
 	path_list.append("/Users/jula/Github/Cross_ML/Logs/logAll_CART.R") #11
 	path_list.append("/Users/jula/Github/Cross_ML/Logs/logAll_SARKAR.R") #12
+
+
+	# Adding extended version of SPL_Conqueror
+
+	# scripts for sampling options
+	path_list.append("/Users/jula/Github/Cross_ML/Setting_scripts/script_SPLCext.a") #13
+
+	# execution file for SPL Conqueror_extended
+	path_list.append("/Users/jula/Github/SPLConqueror_ext/SPLConqueror/CommandLine/bin/Debug/CommandLine.exe") #14
+
+	# output file paths
+	# Logs folder must be already created, not so the files
+	path_list.append("/Users/jula/Github/Cross_ML/Logs/full_SPLCext.log") #15
+
+	# build summarizing log file
+	path_list.append("/Users/jula/Github/Cross_ML/Logs/logAll_SPLC.R") #16
 
 	return path_list

@@ -27,7 +27,7 @@ initData <- function(testSet){
 	
 	#cat("Please enter output filename", "\n")
 	#outputFilename <<- scan(file = "", what = " ", n = 1, quiet = TRUE)
-	outputFilename <<- "output_sarkar"
+	outputFilename <<- "output_SARKAR"
 	
 	# Load the data
 	dataAddr <<- paste("file:///", fileAddress, sep="")
@@ -44,7 +44,7 @@ initData <- function(testSet){
 initGeneralParams <- function(){
 	#print("Please enter number of times experiment should be repeated")
 	#seedRepetitions <<- scan(file = "", what = integer(), n = 1, quiet = FALSE)
-	seedRepetitions <<- numberOfRounds #5
+	seedRepetitions <<- numberOfRepPerRound #5
 	crv$seed <- 2
 	
 	#print("Please enter name of the method that will be used for experiment")
@@ -71,7 +71,7 @@ initSamplingParams <- function(){
 	
 	#cat("Please enter sampling range upper value", '\n')
 	#samplingUpper <<- scan(file = "", what = integer(), n = 1, quiet = FALSE)
-	samplingUpper <<- sampleAmount
+	samplingUpper <<- numberOfRounds
 }
 
 initMinSplitParams <- function(){
@@ -183,6 +183,7 @@ analyseCART <- function()
 	resultDataset <- NULL
 	resultDataset <- rbind(resultDataset, c("Sampling Amount", "Fault Rate"))
 	crs$dataset <- read.csv(dataAddr, na.strings=c(".", "NA", "", "?"), strip.white=TRUE, encoding="UTF-8")
+	terminationReason <- c("Termination reason", "numberOfRounds")
 	
 	# Main loop ###################################################################################
 	for(samplingIter in samplingVector){
@@ -264,7 +265,8 @@ analyseCART <- function()
 
 					if(abs(faultRate-faultRate_old)<complexStep){
 
-							print("Termination reason: minImprovementPerRound")
+							terminationReason <- c("Termination reason", "minImprovementPerRound")
+							print(terminationReason)
 							break
 						}
 
@@ -281,7 +283,7 @@ analyseCART <- function()
 	
 	# Output the combined data ####################################################################
 	address00 <- paste(outputAddress, "/", outputFilename, ".csv", sep="")
-	write.csv(resultDataset, file=address00, row.names=FALSE)
+	write.csv(rbind(terminationReason, resultDataset), file=address00, row.names=FALSE)
 }
 
 add <- function(x){

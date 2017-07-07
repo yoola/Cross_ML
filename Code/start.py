@@ -5,11 +5,12 @@ import time
 from pathlib import Path
 from csvToxml import conv_csv2xml
 from xmlTocsv import conv_xml2csv
-from parse_plot_logs import plot_results
+from parse_plot_logs import plot_results, plot_results_logAll
 from settings_splc import init_SPLC, change_script_SPLC, parse_script_SPLC
 from settings_CART import init_CART, change_script_CART, parse_script_CART
 from settings_SARKAR import init_SARKAR, change_script_SARKAR, parse_script_SARKAR
 from path_settings import init_paths
+from findstring import find_value
 
 path_list = init_paths()
 SPLC_script = path_list[0]
@@ -19,7 +20,11 @@ SARKAR_exe = path_list[5]
 SPLC_logAll = path_list[10]
 CART_logAll = path_list[11]
 SARKAR_logAll = path_list[12]
-
+SPLC_log = path_list[6]
+CART_log = path_list[7]
+SARKAR_log = path_list[8]
+CART_script = path_list[1]
+SARKAR_script = path_list[2]
 
 def append_time_to_script(time_, script_path):
 
@@ -68,11 +73,14 @@ def set_sample_opts(SPLC_, CART_, SARKAR_, meas_, var_, numberofmeas_):
 		init_SARKAR(numberofmeas_)
 
 # run algorithms if chosen
-def run_xml(SPLC_, meas_, var_, numberofmeas_, repeat_run_SPLC):
+def run_xml(SPLC_, meas_, var_, numberofmeas_, repeat_run_SPLC, meas_title):
 
 	if(SPLC_ =="y"):
 
 		for i in range(0,repeat_run_SPLC):
+
+			if(i>0):
+				change_script_SPLC(meas_, var_, numberofmeas_)
 			print("\nStarting SPL Conqueror")
 			print("Number of execution: "+str(i+1))
 			print("See full.log file for progress")
@@ -82,16 +90,19 @@ def run_xml(SPLC_, meas_, var_, numberofmeas_, repeat_run_SPLC):
 			end_time = time.time() - start_time
 			print("SPLC_EXECUTION_TIME in sec: "+str(end_time))
 			parse_script_SPLC(str(end_time))
-			change_script_SPLC(meas_, var_, numberofmeas_)
+			plot_results(SPLC_log, meas_title, "SPL_Conqueror", ";", 1, "Termination", 1, "number of rounds", "test error", i)
+			
+		plot_results_logAll(SPLC_logAll, meas_title, "SPL_Conqueror")
 
-
-def run_csv(CART_, SARKAR_, csv_, repeat_run_CART, repeat_run_SARKAR):
+def run_csv(CART_, SARKAR_, csv_, repeat_run_CART, repeat_run_SARKAR, meas_title):
 
 
 	if(CART_ == "y"):
 
 		for i in range(0,repeat_run_CART):
 
+			if(i>0):
+				change_script_CART()
 			print("\nStarting CART")
 			print("Number of execution: "+str(i+1))
 			start_time = time.time()
@@ -99,12 +110,17 @@ def run_csv(CART_, SARKAR_, csv_, repeat_run_CART, repeat_run_SARKAR):
 			end_time = time.time() - start_time
 			print("CART_EXECUTION_TIME in sec: "+str(end_time))
 			parse_script_CART(str(end_time))
-			change_script_CART()
-			
+			numberOfRepPerRound_CART = find_value(CART_script, "numberOfRepPerRound <- ")
+			plot_results(CART_log, meas_title, "CART", ",", 2, "Sampling", numberOfRepPerRound_CART, "number of rounds", "fault rate", i)
+
+		plot_results_logAll(CART_logAll, meas_title, "CART")
 		
 	if(SARKAR_ == "y"):
 
 		for i in range(0,repeat_run_SARKAR):
+			
+			if(i>0):
+				change_script_SARKAR()
 			print("\nStarting SARKAR")
 			print("Number of execution: "+str(i+1))
 			start_time = time.time()
@@ -112,7 +128,10 @@ def run_csv(CART_, SARKAR_, csv_, repeat_run_CART, repeat_run_SARKAR):
 			end_time = time.time() - start_time
 			print("SARKAR_EXECUTION_TIME in sec: "+str(end_time))
 			parse_script_SARKAR(str(end_time))
-			change_script_SARKAR()
+			numberOfRepPerRound_SARKAR = find_value(SARKAR_script, "numberOfRepPerRound <- ")
+			plot_results(SARKAR_log, meas_title, "SARKAR", ",", 2, "Sampling", numberOfRepPerRound_SARKAR, "number of rounds", "fault rate", i)
+			
+		plot_results_logAll(SARKAR_logAll, meas_title, "SARKAR")
 
 	return csv_
 
@@ -164,13 +183,18 @@ def main():
 		meas_title = get_meas_title(var_)
 		set_sample_opts(SPLC_, CART_, SARKAR_, meas_, var_, numberofmeas)
 
-		run_xml(SPLC_, meas_, var_, numberofmeas, repeat_run_SPLC)
-		run_csv(CART_, SARKAR_, csv_, repeat_run_CART, repeat_run_SARKAR)
+		run_xml(SPLC_, meas_, var_, numberofmeas, repeat_run_SPLC, meas_title)
+		run_csv(CART_, SARKAR_, csv_, repeat_run_CART, repeat_run_SARKAR, meas_title)
 	
 	
 	elif input_ == 'csv':
 
-		csv_ = input("Input your measurements csv file path: ")
+		csv_ = "/Users/jula/Github/Cross_ML/Data/Apache.csv"
+
+		which_path = input("Do you want to use standard data path? (y/n): ")
+		if which_path == "n":
+			csv_ = input("Input your measurements csv file path: ")
+
 
 		Path_is_file(csv_)
 
@@ -186,14 +210,13 @@ def main():
 		meas_title = get_meas_title(csv_)
 		set_sample_opts(SPLC_, CART_, SARKAR_, meas_, var_, numberofmeas)
 	
-		run_csv(CART_, SARKAR_, csv_, repeat_run_CART, repeat_run_SARKAR)
-		run_xml(SPLC_, meas_, var_, numberofmeas, repeat_run_SPLC)
+		run_csv(CART_, SARKAR_, csv_, repeat_run_CART, repeat_run_SARKAR, meas_title)
+		run_xml(SPLC_, meas_, var_, numberofmeas, repeat_run_SPLC, meas_title)
 		
 	
 	else:
 		print("No valid input format.")
 		sys.exit()
 
-	plot_results(SPLC_,CART_,SARKAR_, meas_title)
 
 main()

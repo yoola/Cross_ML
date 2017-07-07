@@ -1,2 +1,1 @@
-executionTime: 6.136593818664551; numberOfRounds: 7; minImprovementPerRound: 0.09263386452749452; sampleAmount: 58
-executionTime: 2.6307380199432373; numberOfRounds: 5; minImprovementPerRound: 0.06632355040118644; sampleAmount: 18
+executionTime:6.869882106781006; numberOfRepPerRound:4; minImprovementPerRound:0.022792051788573218; numberOfRounds:81; faultRate:7.859889368966465; TerminationReason: minImprovementPerRound;

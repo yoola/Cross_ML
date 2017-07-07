@@ -15,32 +15,33 @@ def init_CART(numberofmeas_):
 	if(interactive_=="y"):
 
 		minIPR_ = input("Termination after which minimum improvement per round (default(0.01): ENTER)?: ")
-		numberofrounds_ = input("Number of rounds for the same sample amount (default(5): ENTER): ")
-		sampleamount_ = input("Maximum sample amount (default: ENTER): ")
+		numberOfRepPerRound_ = input("Number of repetitions per round for the same sample amount (default(5): ENTER): ")
+		numberOfRounds_ = input("Maximum measurements/rounds (default: ENTER): ")
 
 		if(minIPR_ ==""):
 			minIPR_ = str("0.01")
-		if(numberofrounds_ ==""):
-			numberofrounds_ = str("5")
-		if(sampleamount_==""):
-			sampleamount_ = str(int(numberofmeas_/2))
+		if(numberOfRepPerRound_ ==""):
+			numberOfRepPerRound_ = str("5")
+		if(numberOfRounds_==""):
+			numberOfRounds_ = str(int(numberofmeas_/2))
 	
-		build_script_CART(numberofrounds_, minIPR_, sampleamount_)
+		build_script_CART(numberOfRepPerRound_, minIPR_, numberOfRounds_)
+
 
 def change_script_CART():
 
 	minIPR_ = random.uniform(0.001, 0.1)
-	numberofrounds_ = random.choice(range(1,9))
-	sampleamount_ = random.choice(range(11,90))
-	build_script_CART(str(numberofrounds_), str(minIPR_), str(sampleamount_))
+	numberOfRepPerRound_ = random.choice(range(1,9))
+	numberOfRounds_ = random.choice(range(11,90))
+	build_script_CART(str(numberOfRepPerRound_), str(minIPR_), str(numberOfRounds_))
 
 
-def build_script_CART(numberofrounds_, minIPR_, sampleamount_):
+def build_script_CART(numberOfRepPerRound_, minIPR_, numberOfRounds_):
 
 	#build script_CART.R 	
-	str1 = str("numberOfRounds <- "+numberofrounds_+"; #number of times experiment should be repeated")
+	str1 = str("numberOfRepPerRound <- "+numberOfRepPerRound_+"; #number of times experiment should be repeated")
 	str2 = str("minImprovementPerRound <- "+minIPR_+"; #complexity step")
-	str3 = str("sampleAmount <- "+sampleamount_+"; #complexity step")
+	str3 = str("numberOfRounds <- "+numberOfRounds_+"; #complexity step")
 	str4 = str("#progression base #(default = 1)")
 	str5 = str("#sampling range lower value #(default = 1)")
 	str6 = str("#sampling range upper value #(default = 1)")
@@ -53,22 +54,16 @@ def build_script_CART(numberofrounds_, minIPR_, sampleamount_):
 	script_.close()
 
 
-def write_to_log(numberofrounds_, minIPR_, sampleamount_, exe_time):
+def write_to_log(numberOfRepPerRound_, minIPR_, numberOfRounds_, exe_time):
 
 	script_ = open(CART_logAll, 'a')
-	script_.write("executionTime: "+exe_time+"; numberOfRounds: "+numberofrounds_+"; minImprovementPerRound: "+minIPR_+"; sampleAmount: "+sampleamount_+"\n")
+	script_.write("executionTime:"+exe_time+"; numberOfRepPerRound:"+numberOfRepPerRound_+"; minImprovementPerRound:"+minIPR_+"; numberOfRounds:"+numberOfRounds_+"; ")
 	script_.close()
 
 
 def parse_script_CART(exe_time):
 
-	numberofrounds_ = find_value(CART_script, "numberOfRounds <- ")
+	numberOfRepPerRound_ = find_value(CART_script, "numberOfRepPerRound <- ")
 	minIPR_ = find_value(CART_script, "minImprovementPerRound <- ")
-	sampleamount_ = find_value(CART_script, "sampleAmount <- ")
-	write_to_log(numberofrounds_, minIPR_, sampleamount_, exe_time)
-
-
-
-
-
-	
+	numberOfRounds_ = find_value(CART_script, "numberOfRounds <- ")
+	write_to_log(numberOfRepPerRound_, minIPR_, numberOfRounds_, exe_time)

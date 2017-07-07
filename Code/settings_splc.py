@@ -16,7 +16,7 @@ def init_SPLC(meas_, var_, numberofmeas_):
 
 		print("Press ENTER for default values.")
 		minIPR_ = input("Termination after which minimum improvement per round (default(0.01): ENTER)?: ")
-		numberofrounds_ = input("Maximum measurements (default: ENTER): ")
+		numberofrounds_ = input("Maximum measurements/rounds (default: ENTER): ")
 		hierarchy_ = input("With Hierarchy? (y/n/ENTER): ")
 		nfp_ = input("Type in the non functional property (default(Measured Value): ENTER): ")
 		negfw_ = input("Negative feature wise sampling? (y/n/ENTER)): ")
@@ -25,7 +25,7 @@ def init_SPLC(meas_, var_, numberofmeas_):
 		rdm_ = input("Random sampling? (y/n/ENTER): ")
 		binaryft_ = input("Are all features binary? (y/n/ENTER): ")
 
-		build_script_SPLC(meas_, var_, numberofmeas_, str(minIPR_), str(numberofrounds_), hierarchy_, nfp_, negfw_
+		build_script_SPLC(interactive_, meas_, var_, numberofmeas_, str(minIPR_), str(numberofrounds_), hierarchy_, nfp_, negfw_
 						, fws_, pws_, rdm_, binaryft_)
 
 		
@@ -40,17 +40,18 @@ def change_script_SPLC(meas_, var_, numberofmeas_):
 	if(negfw_ == "y"):
 		fws_ = "n"
 	else:
-		fws_ = random.choice(["y", "n"])
+		fws_ = "y"
 	pws_ = random.choice(["y", "n"])
-	rdm_ = str(random.choice(["1", "7"]))+" "+str(random.choice(["1", "50"]))
+	rdm_ = "y" #random.choice(["y", "n"])
 	binaryft_ = random.choice(["y", "n"])
 
-	build_script_SPLC(meas_, var_, numberofmeas_, str(minIPR_), str(numberofrounds_), hierarchy_, nfp_, negfw_
+	build_script_SPLC("n", meas_, var_, numberofmeas_, str(minIPR_), str(numberofrounds_), hierarchy_, nfp_, negfw_
 						, fws_, pws_, rdm_, binaryft_)
 
 
-def build_script_SPLC(meas_, var_, numberofmeas_, minIPR_, numberofrounds_, hierarchy_, nfp_, negfw_, fws_, pws_, rdm_, binaryft_):
+def build_script_SPLC(interactive_, meas_, var_, numberofmeas_, minIPR_, numberofrounds_, hierarchy_, nfp_, negfw_, fws_, pws_, rdm_, binaryft_):
 
+	print("interactive: "+str(interactive_))
 	#build script.a 	
 	str1 = str("log "+SPLC_log)
 	#str2 = str("limitFeatureSize:False featureSizeTreshold:4")
@@ -83,7 +84,9 @@ def build_script_SPLC(meas_, var_, numberofmeas_, minIPR_, numberofrounds_, hier
 		str8 = str("pairWise")
 	else:
 		str8 = str("#pairWise")
-	if(rdm_ == "y"):
+	if(rdm_ == "y" and interactive_ =="n"):
+		str9 = str("random "+str(random.choice(["1", "7"]))+" "+str(random.choice(["1", "50"])))
+	elif(rdm_ == "y"):
 		confignumber_ = input("[RANDOM sampling] How many configuration do you want to include?: ")
 		seed_ = input("[RANDOM sampling] Type in a round number to initialize the seed: ")
 		str9 = str("random "+confignumber_+" "+seed_)
@@ -111,7 +114,7 @@ def build_script_SPLC(meas_, var_, numberofmeas_, minIPR_, numberofrounds_, hier
 def write_to_log(value_str, exe_time):
 
 	script_ = open(SPLC_logAll, 'a')
-	script_.write("executionTime: "+exe_time+" "+value_str+"\n")
+	script_.write("executionTime:"+exe_time+"; "+value_str)
 	script_.close()
 
 def parse_script_SPLC(exe_time):
