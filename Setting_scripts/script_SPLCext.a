@@ -1,0 +1,15 @@
+log /Users/jula/Github/Cross_ML/Logs/full_SPLCext.log
+mlSettings abortError:1 minImprovementPerRound:0.012326924389365484 numberOfRounds:502 withHierarchy:True
+vm /Users/jula/Github/Cross_ML/Code/var.xml
+all /Users/jula/Github/Cross_ML/Code/meas.xml
+nfp Measured Value
+negfw
+#featureWise
+pairWise
+random 7 50
+allBinary
+start
+analyze-learning
+clean-sampling
+# clean-learning
+# clean-global 
