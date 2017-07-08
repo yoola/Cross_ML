@@ -1,7 +1,7 @@
 import os
 import random
 from path_settings import init_paths
-from findstring import find_value_SPLC
+from findstring import find_value_SPLC, find_value
 
 path_list = init_paths()
 SPLC_script = path_list[0]
@@ -28,12 +28,35 @@ def init_SPLC(meas_, var_, numberofmeas_):
 		build_script_SPLC(interactive_, meas_, var_, numberofmeas_, str(minIPR_), str(numberofrounds_), hierarchy_, nfp_, negfw_
 						, fws_, pws_, rdm_, binaryft_)
 
+	else:
+
+		counter = 0
+		combi_str = str("")
+		with open(SPLC_script) as f:
 		
+			for line in f:
+
+				if not (counter == 2 or counter ==3):
+					combi_str = combi_str + line
+
+				elif counter == 2:
+					combi_str = combi_str + "vm "+var_+"\n"
+
+				elif counter == 3:
+					combi_str = combi_str + "all "+meas_+"\n"
+
+				counter = counter +1
+		f.close()
+
+		script_ = open(SPLC_script, 'w')
+		script_.write(combi_str)
+		script_.close()
+
 
 def change_script_SPLC(meas_, var_, numberofmeas_):
 
 	minIPR_ = random.uniform(0.001, 0.1)
-	numberofrounds_ = random.choice(range(10,int(numberofmeas_/2)))
+	numberofrounds_ = random.choice(range(5,25))#random.choice(range(10,int(numberofmeas_/2)))
 	hierarchy_ = random.choice(["y", "n"])
 	nfp_ = "Measured Value"
 	negfw_ = random.choice(["y", "n"])
@@ -51,7 +74,6 @@ def change_script_SPLC(meas_, var_, numberofmeas_):
 
 def build_script_SPLC(interactive_, meas_, var_, numberofmeas_, minIPR_, numberofrounds_, hierarchy_, nfp_, negfw_, fws_, pws_, rdm_, binaryft_):
 
-	print("interactive: "+str(interactive_))
 	#build script.a 	
 	str1 = str("log "+SPLC_log)
 	#str2 = str("limitFeatureSize:False featureSizeTreshold:4")

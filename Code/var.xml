@@ -13,7 +13,7 @@
 			<impliedOptions />
 			<excludedOptions /> 
 			<defaultValue>Selected</defaultValue>
-			<optional>True</optional>
+			<optional>False</optional>
 		</configurationOption>
 		 <configurationOption> 
 			<name>hostnamelookups</name>
@@ -28,7 +28,7 @@
 			<impliedOptions />
 			<excludedOptions /> 
 			<defaultValue>Selected</defaultValue>
-			<optional>True</optional>
+			<optional>False</optional>
 		</configurationOption>
 		 <configurationOption> 
 			<name>keepalive</name>
@@ -43,7 +43,7 @@
 			<impliedOptions />
 			<excludedOptions /> 
 			<defaultValue>Selected</defaultValue>
-			<optional>True</optional>
+			<optional>False</optional>
 		</configurationOption>
 		 <configurationOption> 
 			<name>enablesendfile</name>
@@ -58,7 +58,7 @@
 			<impliedOptions />
 			<excludedOptions /> 
 			<defaultValue>Selected</defaultValue>
-			<optional>True</optional>
+			<optional>False</optional>
 		</configurationOption>
 		 <configurationOption> 
 			<name>followsymlinks</name>
@@ -73,7 +73,7 @@
 			<impliedOptions />
 			<excludedOptions /> 
 			<defaultValue>Selected</defaultValue>
-			<optional>True</optional>
+			<optional>False</optional>
 		</configurationOption>
 		 <configurationOption> 
 			<name>accesslog</name>
@@ -88,7 +88,7 @@
 			<impliedOptions />
 			<excludedOptions /> 
 			<defaultValue>Selected</defaultValue>
-			<optional>True</optional>
+			<optional>False</optional>
 		</configurationOption>
 		 <configurationOption> 
 			<name>extendedstatus</name>
@@ -103,7 +103,7 @@
 			<impliedOptions />
 			<excludedOptions /> 
 			<defaultValue>Selected</defaultValue>
-			<optional>True</optional>
+			<optional>False</optional>
 		</configurationOption>
 		 <configurationOption> 
 			<name>inmemory</name>
@@ -118,7 +118,7 @@
 			<impliedOptions />
 			<excludedOptions /> 
 			<defaultValue>Selected</defaultValue>
-			<optional>True</optional>
+			<optional>False</optional>
 		</configurationOption>
 		 <configurationOption> 
 			<name>handle</name>
@@ -133,7 +133,7 @@
 			<impliedOptions />
 			<excludedOptions /> 
 			<defaultValue>Selected</defaultValue>
-			<optional>True</optional>
+			<optional>False</optional>
 		</configurationOption>
 	 </binaryOptions> 
 	<numericOptions /> 

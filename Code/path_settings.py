@@ -34,7 +34,7 @@ def init_paths():
 	path_list.append("/Users/jula/Github/Cross_ML/Logs/logAll_CART.R") #11
 	path_list.append("/Users/jula/Github/Cross_ML/Logs/logAll_SARKAR.R") #12
 
-
+	#----------------------
 	# Adding extended version of SPL_Conqueror
 
 	# scripts for sampling options
@@ -49,5 +49,14 @@ def init_paths():
 
 	# build summarizing log file
 	path_list.append("/Users/jula/Github/Cross_ML/Logs/logAll_SPLC.R") #16
+	#----------------------
+
+
+	# paths for measurement files
+	path_list.append("/Users/jula/Github/Cross_ML/Data/Apache.csv") #17
+
+	path_list.append("/Users/jula/Github/Cross_ML/Data/measurements.xml") #18
+	path_list.append("/Users/jula/Github/Cross_ML/Data/H264.xml") #19
+
 
 	return path_list
