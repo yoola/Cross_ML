@@ -113,7 +113,7 @@ def build_script_SPLC(interactive_, meas_, var_, numberofmeas_, minIPR_, numbero
 		seed_ = input("[RANDOM sampling] Type in a round number to initialize the seed: ")
 		str9 = str("random "+confignumber_+" "+seed_)
 		if(confignumber_ == "" or seed_==""):
-			str9 = str("#random")
+			str9 = str("random 4 10")
 	else:
 		str9 = str("#random")
 	if(binaryft_=="y"):

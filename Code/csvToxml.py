@@ -36,27 +36,6 @@ def conv_csv2xml(filepath):
 		if check == False:
 			elem_old = elem
 	
-	elem_old = str()
-	set_optional = []
-	check = False
-	for elem in csv_list[0][0:csv_size-1]:
-	
-		# feature has children
-		if ((elem_old in elem) and elem_old):
-			
-			set_optional[-1] = 0
-			set_optional.append(0)
-			check = True
-
-		# feature has no children
-		else:
-			check = False
-
-			set_optional.append(1)
-	
-		if check==False:
-			elem_old = elem
-	
 	# write elements into script
 	script1.write("<vm name=\"var_model\"> \n\t <binaryOptions>")
 	elem_old = str()

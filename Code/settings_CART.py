@@ -23,7 +23,7 @@ def init_CART(numberofmeas_):
 		if(numberOfRepPerRound_ ==""):
 			numberOfRepPerRound_ = str("5")
 		if(numberOfRounds_==""):
-			numberOfRounds_ = str(int(numberofmeas_/2))
+			numberOfRounds_ = str(int(numberofmeas_/8))
 	
 		build_script_CART(numberOfRepPerRound_, minIPR_, numberOfRounds_)
 

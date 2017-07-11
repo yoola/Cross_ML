@@ -1,9 +1,11 @@
-command: mlSettings abortError:1 minImprovementPerRound:0.012326924389365484 numberOfRounds:502 withHierarchy:True
+command: mlSettings abortError:1 minImprovementPerRound:0.01 numberOfRounds:72 withHierarchy:False parallelization:False bagging:False crossValidation:False
 command: vm /Users/jula/Github/Cross_ML/Code/var.xml
 command: all /Users/jula/Github/Cross_ML/Code/meas.xml
 Configs with too large deviation: 0
 192 configurations loaded.
 command: nfp Measured Value
-command: negfw
-command: pairWise
-command: random 7 50
+command: allBinary
+command: explorer-max-distance batchSize:10 sleepCycles:1
+command: start
+Learning: NumberOfConfigurationsLearning:192 NumberOfConfigurationsValidation:192
+Learning progress:
