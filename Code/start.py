@@ -118,10 +118,10 @@ def run_xml(SPLC_, SPLCext_, meas_, var_, numberofmeas_, repeat_run_SPLC, repeat
 			os.system("mono "+SPLCext_exe+" "+SPLCext_script) # für Windows ändern
 			end_time = time.time() - start_time
 			print("SPLCext_EXECUTION_TIME in sec: "+str(end_time))
-			#parse_script_SPLCext(str(end_time))
-			#plot_results(SPLCext_log, meas_title, "SPLCext_Conqueror", ";", 1, "Termination", 1, "number of rounds", "test error", i)
+			parse_script_SPLCext(str(end_time))
+			plot_results(SPLCext_log, meas_title, "SPL_Conqueror_ext", ";", 1, "progress:", 1, "number of rounds", "test error", i)
 			
-		#plot_results_logAll(SPLC_logAll, meas_title, "SPLCext_Conqueror")
+		plot_results_logAll(SPLCext_logAll, meas_title, "SPL_Conqueror_ext")
 
 def run_csv(CART_, SARKAR_, csv_, repeat_run_CART, repeat_run_SARKAR, meas_title):
 

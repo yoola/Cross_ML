@@ -1,11 +1,29 @@
-command: mlSettings abortError:1 minImprovementPerRound:0.01 numberOfRounds:72 withHierarchy:False parallelization:False bagging:False crossValidation:False
+command: mlSettings abortError:1 minImprovementPerRound:0.02572892134982891 numberOfRounds:7 withHierarchy:False parallelization:False bagging:False crossValidation:False
 command: vm /Users/jula/Github/Cross_ML/Code/var.xml
 command: all /Users/jula/Github/Cross_ML/Code/meas.xml
 Configs with too large deviation: 0
 192 configurations loaded.
 command: nfp Measured Value
 command: allBinary
-command: explorer-max-distance batchSize:10 sleepCycles:1
+command: explorer-combi batchSize:5 sleepCycles:1
 command: start
 Learning: NumberOfConfigurationsLearning:192 NumberOfConfigurationsValidation:192
 Learning progress:
+1;1395 * root + -315 * accesslog;17.3915913761681;17.3915913761681;24.7326501750659;24.7326501750659;0.096346;2;-315 * accesslog;1;1.79769313486232E+308;
+samples=5
+2;1180 * root + -99.9999999999997 * accesslog + 860 * keepalive;2.40760272467592;2.40760272467592;19.9238340839877;19.9238340839877;0.102876;3;860 * keepalive;1;22.32504745039;
+samples=5
+3;1176.31578947368 * root + -96.3157894736839 * accesslog + 855.78947368421 * keepalive + 225.78947368421 * inmemory;4.52890625205907;4.52890625205907;20.5188579818245;20.5188579818245;0.120753;4;225.78947368421 * inmemory;1;15.3949278319286;
+samples=10
+4;1211.25 * root + -131.25 * accesslog + 832.5 * keepalive + 202.5 * inmemory + -221.25 * hostnamelookups;2.13760958720474;2.13760958720474;14.1187187500281;14.1187187500281;0.131618;5;-221.25 * hostnamelookups;1;18.3812483946198;
+samples=10
+5;1194.55414012739 * root + -165.095541401274 * accesslog + 841.050955414013 * keepalive + 211.050955414013 * inmemory + -180.095541401274 * hostnamelookups + 59.8089171974529 * enablesendfile;2.18086718039035;2.18086718039035;14.6254718658839;14.6254718658839;0.150458;6;59.8089171974529 * enablesendfile;1;11.9378515696377;
+samples=15
+6;1202.90499390987 * root + -176.272838002436 * accesslog + 842.978075517661 * keepalive + 212.978075517662 * inmemory + -171.102314250914 * hostnamelookups + 77.7953714981726 * enablesendfile + -40.3410475030441 * extendedstatus;1.90788888488642;1.90788888488642;14.4095193044128;14.4095193044128;0.174815;7;-40.3410475030441 * extendedstatus;1;12.7175829809975;
+samples=15
+7;1206.77737870725 * root + -173.844971110763 * accesslog + 876.522961236773 * keepalive + 246.522961236773 * inmemory + -117.272039303775 * hostnamelookups + 66.2404353205455 * enablesendfile + -94.6688849115291 * extendedstatus + 80.6470948599983 * handle;3.08456181434949;3.08456181434949;17.0495098698533;17.0495098698533;0.218805;8;80.6470948599983 * handle;1;11.3249574900633;
+samples=20
+Elapsed=00:00:00.2244503
+Final number of measurements=20
+average model: 
+command: clean-sampling

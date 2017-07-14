@@ -48,7 +48,7 @@ def init_paths():
 	path_list.append("/Users/jula/Github/Cross_ML/Logs/full_SPLCext.log") #15
 
 	# build summarizing log file
-	path_list.append("/Users/jula/Github/Cross_ML/Logs/logAll_SPLC.R") #16
+	path_list.append("/Users/jula/Github/Cross_ML/Logs/logAll_SPLCext.R") #16
 	#----------------------
 
 

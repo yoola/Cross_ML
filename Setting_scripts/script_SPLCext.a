@@ -1,5 +1,5 @@
 log /Users/jula/Github/Cross_ML/Logs/full_SPLCext.log
-mlSettings abortError:1 minImprovementPerRound:0.01 numberOfRounds:72 withHierarchy:False parallelization:False bagging:False crossValidation:False
+mlSettings abortError:1 minImprovementPerRound:0.02572892134982891 numberOfRounds:7 withHierarchy:False parallelization:False bagging:False crossValidation:False
 vm /Users/jula/Github/Cross_ML/Code/var.xml
 all /Users/jula/Github/Cross_ML/Code/meas.xml
 nfp Measured Value
@@ -10,9 +10,9 @@ nfp Measured Value
 allBinary
 
 #explorer-random batchSize:10 sleepCycles:1
-explorer-max-distance batchSize:10 sleepCycles:1
+#explorer-max-distance batchSize:10 sleepCycles:1
 #explorer-max-error internalRoundsPerCycle:2 batchSizeExploit:3 batchSizeExplore:4 sleepCycles:1 sleepRoundsExplore:1
-#explorer-combi batchSize:20 sleepCycles:2
+explorer-combi batchSize:5 sleepCycles:1
 #explorer-omni
 
 start

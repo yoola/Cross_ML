@@ -1,7 +1,7 @@
 import os
 import random
 from path_settings import init_paths
-from findstring import find_value_SPLC
+from findstring import find_value_SPLCext
 
 path_list = init_paths()
 SPLCext_script = path_list[13]
@@ -159,7 +159,7 @@ def build_script_SPLCext(interactive_, meas_, var_, numberofmeas_,  minIPR_, num
 
 	if(expl_combi == "y" and interactive_ =="n"):
 		str14 = str("explorer-combi batchSize:"+str(random.choice(["5", "20"]))+" sleepCycles:"
-			+str(random.choice(["2", "2"])))
+			+str(random.choice(["1", "5"])))
 	elif(expl_combi == "y"):
 		batchsize_ = input("[explorer-combi] Batchsize?: ")
 		sleepCycles_ = input("[explorer-combi] How many sleep cycles?: ")
@@ -195,6 +195,6 @@ def write_to_log(value_str, exe_time):
 
 def parse_script_SPLCext(exe_time):
 
-	value_str = find_value_SPLC(SPLC_script)
+	value_str = find_value_SPLCext(SPLCext_script)
 	write_to_log(value_str, exe_time)
 

@@ -4,3 +4,6 @@ executionTime:9.673027038574219; numberOfRepPerRound:4; minImprovementPerRound:0
 executionTime:2.501852035522461; numberOfRepPerRound:1; minImprovementPerRound:0.006693539685036911; numberOfRounds:45; faultRate:7.75638848752329; TerminationReason: numberOfRounds;
 executionTime:2.2490179538726807; numberOfRepPerRound:1; minImprovementPerRound:0.006693539685036911; numberOfRounds:45; faultRate:7.20277556611433; TerminationReason: numberOfRounds;
 executionTime:4.792649030685425; numberOfRepPerRound:1; minImprovementPerRound:0.006693539685036911; numberOfRounds:45; faultRate:19.3739718815558; TerminationReason: numberOfRounds;
+executionTime:5.697873830795288; numberOfRepPerRound:1; minImprovementPerRound:0.006693539685036911; numberOfRounds:45; faultRate:8.13713491022595; TerminationReason: unknown;
+executionTime:8.1459059715271; numberOfRepPerRound:8; minImprovementPerRound:0.0865570361598179; numberOfRounds:77; faultRate:7.466094889420209; TerminationReason: unknown;
+executionTime:2.1126458644866943; numberOfRepPerRound:5; minImprovementPerRound:0.0804348196638195; numberOfRounds:66; faultRate:31.11358735641706; TerminationReason: unknown;

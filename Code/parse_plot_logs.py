@@ -6,13 +6,10 @@ from path_settings import init_paths
 from findstring import find_value, find_value_logAll
 path_list = init_paths()
 
-CART_script = path_list[1]
-SARKAR_script = path_list[2]
-SPLC_log = path_list[6]
-CART_log = path_list[7]
-SARKAR_log = path_list[8]
+
 plot_dir = path_list[9]
 SPLC_logAll = path_list[10]
+SPLCext_logAll = path_list[16]
 CART_logAll = path_list[11]
 SARKAR_logAll = path_list[12]
 
@@ -39,31 +36,47 @@ def plot_results(file_path, meas_title, title, key_char, cut, key_str, numberOfR
 		check = False
 		for line in f:
 			if(check == True):
-				pos = line.rfind(key_char) # finding a key string in line to get fault rate
-				if not pos == -1:
-					faultRate_list.append(float(line[pos+cut:-cut]))
-					counter += 1
+
+				if title == "SPL_Conqueror_ext":
+					pos = line[:-2].rfind(key_char)
+					if not pos == -1:
+						faultRate_list.append(float(line[pos+cut:-cut-1]))
+						counter += 1
+				else:
+					pos = line.rfind(key_char) # finding a key string in line to get fault rate
+					if not pos == -1:
+						faultRate_list.append(float(line[pos+cut:-cut]))
+						counter += 1
 	
 			if key_str in line: # Finding string to start parsing document
 				check = True
 
 			if "Termination reason" in line and (title =="CART" or title =="SARKAR"):
 				pos2 = line.find(",")
-				terminationReason = line[pos2+2:-2]
+				terminationReason_CART = line[pos2+2:-2]
 
 			if "Termination reason" in line and title == ("SPL_Conqueror"):
 				pos2 = line.find(":")
 				pos3 = line.find("\n")
 				terminationReason = line[pos2+2:pos3]
 
-	if(title == "SPL_Conqueror"):
-		write_to_log(SPLC_logAll, stats.mean(faultRate_list[-step:]), terminationReason)
+			if "SPL_Conqueror_ext":
+				terminationReason = str("unknown")
 
+	
 	if(title == "CART"):
 		write_to_log(CART_logAll, stats.mean(faultRate_list[-step:]), terminationReason)
 
 	if(title == "SARKAR"):
 		write_to_log(SARKAR_logAll, stats.mean(faultRate_list[-step:]), terminationReason)
+
+	if(title == "SPL_Conqueror"):
+		write_to_log(SPLC_logAll, stats.mean(faultRate_list[-step:]), terminationReason)
+
+	if(title == "SPL_Conqueror_ext"):
+		write_to_log(SPLCext_logAll, stats.mean(faultRate_list[-step:]), terminationReason)
+
+
 
 
 	numberofmeas_ = int(counter/step)
@@ -81,7 +94,7 @@ def plot_results(file_path, meas_title, title, key_char, cut, key_str, numberOfR
 			deviation_neg_.append(mean_[i]+abs(mean_[i]-deviation_[i]))
 	
 
-		plt.plot(range(0,numberofmeas_), mean_, 'g', label="mean of RepPerRound with standard deviation")
+		plt.plot(range(0,numberofmeas_), mean_, 'g', label="mean of repetition per round with standard deviation")
 		plt.legend(loc=1)
 		plt.fill_between(range(0,numberofmeas_), deviation_, deviation_neg_,
     	alpha=0.2, edgecolor='#1B2ACC', facecolor='#13DF3B',
