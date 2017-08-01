@@ -65,7 +65,7 @@ def find_value_SPLCext(file_path):
 						
 						value_str = sub_str + line[cut2:cut1] +"; "
 
-					if(counter>3 and counter<16):
+					if(counter>3 and counter<15):
 						cut = line.find("\n")
 						if(line[0]=="#"):
 							value_str = value_str + line[1:cut]+":False; "
@@ -77,6 +77,7 @@ def find_value_SPLCext(file_path):
 	return value_str
 
 def find_value_logAll(file_path, keystring):
+
 	with open(file_path) as f:
 	
 				value_list = []
@@ -86,7 +87,23 @@ def find_value_logAll(file_path, keystring):
 						cut = line[pos:].find(";")
 						len_ = len(keystring)
 						value_list.append(line[pos+len_:pos+cut])
+
 						
-	
 	return value_list
+
+def find_value_scriptAll(file_path, keystring, iter):
+
+	with open(file_path) as f:
+		counter_ = 0
+		value = str("")
+
+		for line in f:
+			if keystring in line and counter_ == iter: # Finding string to start parsing document
+					pos = line.find(keystring)
+					cut = line[pos:].find(";")
+					len_ = len(keystring)
+					value = line[pos+len_+1:pos+cut]
+			counter_ = counter_+1
+
+	return value
 

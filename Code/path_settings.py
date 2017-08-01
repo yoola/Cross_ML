@@ -58,5 +58,14 @@ def init_paths():
 	path_list.append("/Users/jula/Github/Cross_ML/Data/measurements.xml") #18
 	path_list.append("/Users/jula/Github/Cross_ML/Data/H264.xml") #19
 
+	#------------------------
+	
+	# configuration files for script settings
+	
+	path_list.append("/Users/jula/Github/Cross_ML/Setting_scripts/script_CART_All.a") #20
+	path_list.append("/Users/jula/Github/Cross_ML/Setting_scripts/script_SARKAR_All.a") #21
+	path_list.append("/Users/jula/Github/Cross_ML/Setting_scripts/script_SPLC_All.a") #22
+	path_list.append("/Users/jula/Github/Cross_ML/Setting_scripts/script_SPLCext_All.a") #23
+
 
 	return path_list

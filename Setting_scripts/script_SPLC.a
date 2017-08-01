@@ -1,13 +1,13 @@
 log /Users/jula/Github/Cross_ML/Logs/full_SPLC.log
-mlSettings abortError:1 minImprovementPerRound:0.06747057759648305 numberOfRounds:17 withHierarchy:True
+mlSettings abortError:1 minImprovementPerRound:0.1 numberOfRounds:11 withHierarchy:False
 vm /Users/jula/Github/Cross_ML/Code/var.xml
 all /Users/jula/Github/Cross_ML/Code/meas.xml
 nfp Measured Value
 #negfw
-featureWise
-pairWise
-random 7 50
-#allBinary
+#featureWise
+#pairWise
+#random 2 3
+allBinary
 start
 analyze-learning
 clean-sampling

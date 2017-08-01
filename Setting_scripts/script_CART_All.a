@@ -1,0 +1,8 @@
+numberOfRepPerRound:1; minImprovementPerRound:0.01; numberOfRounds:10;
+numberOfRepPerRound:2; minImprovementPerRound:0.02; numberOfRounds:11;
+numberOfRepPerRound:2; minImprovementPerRound:0.1; numberOfRounds:12;
+numberOfRepPerRound:1; minImprovementPerRound:0.01; numberOfRounds:13;
+numberOfRepPerRound:2; minImprovementPerRound:0.001; numberOfRounds:14;
+numberOfRepPerRound:3; minImprovementPerRound:0.003; numberOfRounds:15;
+numberOfRepPerRound:1; minImprovementPerRound:0.05; numberOfRounds:16;
+numberOfRepPerRound:1; minImprovementPerRound:0.06; numberOfRounds:17;

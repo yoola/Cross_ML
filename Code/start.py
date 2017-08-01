@@ -33,6 +33,10 @@ SARKAR_script = path_list[2]
 csvData_ = path_list[17]
 xmlDatameas_ = path_list[18]
 xmlDatavar_ = path_list[19]
+script_CART_All = path_list[20]
+script_SARKAR_All = path_list[21]
+script_SPLC_All = path_list[22]
+script_SPLCext_All = path_list[23]
 
 def append_time_to_script(time_, script_path):
 
@@ -85,14 +89,14 @@ def set_sample_opts(SPLC_, SPLCext_, CART_, SARKAR_, meas_, var_, numberofmeas_)
 		init_SARKAR(numberofmeas_)
 
 # run algorithms if chosen
-def run_xml(SPLC_, SPLCext_, meas_, var_, numberofmeas_, repeat_run_SPLC, repeat_run_SPLCext, meas_title):
+def run_xml(SPLC_, SPLCext_, meas_, var_, configs_SPLC, configs_SPLCext, numberofmeas_, repeat_run_SPLC, repeat_run_SPLCext, meas_title):
 
 	if(SPLC_ =="y"):
 
 		for i in range(0,repeat_run_SPLC):
 
 			if(i>0):
-				change_script_SPLC(meas_, var_, numberofmeas_)
+				change_script_SPLC(meas_, var_, numberofmeas_, i, configs_SPLC)
 			print("\nStarting SPL Conqueror")
 			print("Number of execution: "+str(i+1))
 			print("See full_SPLC.log file for progress")
@@ -110,7 +114,7 @@ def run_xml(SPLC_, SPLCext_, meas_, var_, numberofmeas_, repeat_run_SPLC, repeat
 		for i in range(0,repeat_run_SPLCext):
 
 			if(i>0):
-				change_script_SPLCext(meas_, var_, numberofmeas_)
+				change_script_SPLCext(meas_, var_, numberofmeas_, i, configs_SPLCext)
 			print("\nStarting SPL Conqueror ext")
 			print("Number of execution: "+str(i+1))
 			print("See full_SPLCext.log file for progress")
@@ -119,11 +123,11 @@ def run_xml(SPLC_, SPLCext_, meas_, var_, numberofmeas_, repeat_run_SPLC, repeat
 			end_time = time.time() - start_time
 			print("SPLCext_EXECUTION_TIME in sec: "+str(end_time))
 			parse_script_SPLCext(str(end_time))
-			plot_results(SPLCext_log, meas_title, "SPL_Conqueror_ext", ";", 1, "progress:", 1, "number of rounds", "test error", i)
+			plot_results(SPLCext_log, meas_title, "SPL_Conqueror_ext", ";", 1, "Termination", 1, "number of rounds", "test error", i)
 			
 		plot_results_logAll(SPLCext_logAll, meas_title, "SPL_Conqueror_ext")
 
-def run_csv(CART_, SARKAR_, csv_, repeat_run_CART, repeat_run_SARKAR, meas_title):
+def run_csv(CART_, SARKAR_, csv_, configs_CART, configs_SARKAR, repeat_run_CART, repeat_run_SARKAR, meas_title):
 
 
 	if(CART_ == "y"):
@@ -131,7 +135,7 @@ def run_csv(CART_, SARKAR_, csv_, repeat_run_CART, repeat_run_SARKAR, meas_title
 		for i in range(0,repeat_run_CART):
 
 			if(i>0):
-				change_script_CART()
+				change_script_CART(i, configs_CART)
 			print("\nStarting CART")
 			print("Number of execution: "+str(i+1))
 			start_time = time.time()
@@ -149,7 +153,7 @@ def run_csv(CART_, SARKAR_, csv_, repeat_run_CART, repeat_run_SARKAR, meas_title
 		for i in range(0,repeat_run_SARKAR):
 			
 			if(i>0):
-				change_script_SARKAR()
+				change_script_SARKAR(i, configs_SARKAR)
 			print("\nStarting SARKAR")
 			print("Number of execution: "+str(i+1))
 			start_time = time.time()
@@ -177,9 +181,21 @@ def main():
 	repeat_run_SPLCext = 0
 	repeat_run_CART = 0
 	repeat_run_SARKAR = 0
+	configs_CART = str("")
+	configs_SARKAR = str("")
+	configs_SPLC = str("")
+	configs_SPLCext = str("")
 
 
 	input_ = input("Do you have your measurements as xml or csv?: ")
+
+	read_configs_ = input("Do you want to read in you script settings in a separate file? (y/n): ")
+
+	if(read_configs_ == "y"):
+		configs_CART = script_CART_All
+		configs_SARKAR = script_SARKAR_All
+		configs_SPLC = script_SPLC_All
+		configs_SPLCext = script_SPLCext_All
 
 	print("\nWhich algorithms do you want to include in the analysis?")
 	SPLC_ = input("SPL Conqueror? (y/n): ")
@@ -220,8 +236,8 @@ def main():
 		meas_title = get_meas_title(var_)
 		set_sample_opts(SPLC_, SPLCext_, CART_, SARKAR_, meas_, var_, numberofmeas)
 
-		run_xml(SPLC_, SPLCext_, meas_, var_, numberofmeas, repeat_run_SPLC, repeat_run_SPLCext, meas_title)
-		run_csv(CART_, SARKAR_, csv_, repeat_run_CART, repeat_run_SARKAR, meas_title)
+		run_xml(SPLC_, SPLCext_, meas_, var_, configs_SPLC, configs_SPLCext, numberofmeas, repeat_run_SPLC, repeat_run_SPLCext, meas_title)
+		run_csv(CART_, SARKAR_, csv_, configs_CART, configs_SARKAR, repeat_run_CART, repeat_run_SARKAR, meas_title)
 	
 	
 	elif input_ == 'csv':
@@ -247,8 +263,8 @@ def main():
 		meas_title = get_meas_title(csv_)
 		set_sample_opts(SPLC_, SPLCext_, CART_, SARKAR_, meas_, var_, numberofmeas)
 	
-		run_csv(CART_, SARKAR_, csv_, repeat_run_CART, repeat_run_SARKAR, meas_title)
-		run_xml(SPLC_, SPLCext_, meas_, var_, numberofmeas, repeat_run_SPLC, repeat_run_SPLCext, meas_title)
+		run_csv(CART_, SARKAR_, csv_, configs_CART, configs_SARKAR, repeat_run_CART, repeat_run_SARKAR, meas_title)
+		run_xml(SPLC_, SPLCext_, meas_, var_, configs_SPLC, configs_SPLCext, numberofmeas, repeat_run_SPLC, repeat_run_SPLCext, meas_title)
 		
 	
 	else:

@@ -1,10 +1,3 @@
-executionTime:2.808612108230591; numberOfRepPerRound:3; minImprovementPerRound:0.04752046455874091; numberOfRounds:27; faultRate:12.54245310678312; TerminationReason: numberOfRounds;
-executionTime:2.6948318481445312; numberOfRepPerRound:3; minImprovementPerRound:0.04752046455874091; numberOfRounds:27; faultRate:8.595681101008346; TerminationReason: numberOfRounds;
-executionTime:5.562665939331055; numberOfRepPerRound:3; minImprovementPerRound:0.04752046455874091; numberOfRounds:27; faultRate:11.917553303291463; TerminationReason: numberOfRounds;
-executionTime:2.9730210304260254; numberOfRepPerRound:3; minImprovementPerRound:0.04752046455874091; numberOfRounds:27; faultRate:7.81779606589485; TerminationReason: numberOfRounds;
-executionTime:2.4759509563446045; numberOfRepPerRound:5; minImprovementPerRound:0.027653287449387505; numberOfRounds:85; faultRate:22.31511833021088; TerminationReason: minImprovementPerRound;
-executionTime:3.3228070735931396; numberOfRepPerRound:5; minImprovementPerRound:0.027653287449387505; numberOfRounds:85; faultRate:9.511822593706023; TerminationReason: minImprovementPerRound;
-executionTime:4.8366639614105225; numberOfRepPerRound:5; minImprovementPerRound:0.027653287449387505; numberOfRounds:85; faultRate:7.811166322613234; TerminationReason: minImprovementPerRound;
-executionTime:7.0279741287231445; numberOfRepPerRound:5; minImprovementPerRound:0.027653287449387505; numberOfRounds:85; faultRate:7.1451763565087365; TerminationReason: unknown;
-executionTime:2.3312509059906006; numberOfRepPerRound:2; minImprovementPerRound:0.04086302091062853; numberOfRounds:86; faultRate:8.411250091040305; TerminationReason: unknown;
-executionTime:2.2253830432891846; numberOfRepPerRound:3; minImprovementPerRound:0.0713119787390277; numberOfRounds:37; faultRate:11.592476048625963; TerminationReason: unknown;
+executionTime:1.8092260360717773; numberOfRepPerRound:1; minImprovementPerRound:0.02; numberOfRounds:11; faultRate:12.7123561650457; TerminationReason: numberOfRounds;
+executionTime:1.9186840057373047; numberOfRepPerRound:2; minImprovementPerRound:0.1; numberOfRounds:10; faultRate:27.612483908372347; TerminationReason: numberOfRounds;
+executionTime:1.825897216796875; numberOfRepPerRound:1; minImprovementPerRound:0.02; numberOfRounds:11; faultRate:13.6065290995782; TerminationReason: numberOfRounds;

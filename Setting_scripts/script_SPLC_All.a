@@ -1,0 +1,6 @@
+numberOfRounds:11; minIPR:0.03; hierarchy:n; nfp:Measured Value; negfw:y; fws:n; pws:y; rdm:n; confignumber:3; seed:4; binaryft:y;
+numberOfRounds:11; minIPR:0.1; hierarchy:n; nfp:Measured Value; negfw:n; fws:n; pws:n; rdm:n; confignumber:6;	seed:1; binaryft:y;
+numberOfRounds:12; minIPR:0.05; hierarchy:n; nfp:Measured Value; negfw:n; fws:n; pws:y; rdm:n; confignumber:7;	seed:2; binaryft:y;
+numberOfRounds:13; minIPR:0.02; hierarchy:n; nfp:Measured Value; negfw:n; fws:n; pws:n; rdm:y; confignumber:2;	seed:4; binaryft:y;
+numberOfRounds:14; minIPR:0.001; hierarchy:n; nfp:Measured Value; negfw:n; fws:y; pws:n; rdm:n; confignumber:5; seed:3; binaryft:y;
+numberOfRounds:15; minIPR:0.01; hierarchy:n; nfp:Measured Value; negfw:n; fws:y; pws:n; rdm:n; confignumber:2;	seed:2; binaryft:y;

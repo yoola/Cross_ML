@@ -53,15 +53,12 @@ def plot_results(file_path, meas_title, title, key_char, cut, key_str, numberOfR
 
 			if "Termination reason" in line and (title =="CART" or title =="SARKAR"):
 				pos2 = line.find(",")
-				terminationReason_CART = line[pos2+2:-2]
+				terminationReason = line[pos2+2:-2]
 
-			if "Termination reason" in line and title == ("SPL_Conqueror"):
+			if "Termination reason" in line and (title == "SPL_Conqueror" or title == "SPL_Conqueror_ext"):
 				pos2 = line.find(":")
 				pos3 = line.find("\n")
 				terminationReason = line[pos2+2:pos3]
-
-			if "SPL_Conqueror_ext":
-				terminationReason = str("unknown")
 
 	
 	if(title == "CART"):

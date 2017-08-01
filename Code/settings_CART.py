@@ -1,7 +1,7 @@
 import os
 import random
 from path_settings import init_paths
-from findstring import find_value
+from findstring import find_value, find_value_scriptAll
 
 path_list = init_paths()
 CART_script = path_list[1]
@@ -10,7 +10,7 @@ CART_logAll = path_list[11]
 
 def init_CART(numberofmeas_):
 
-	interactive_ = input("Interactive mode? (y/n): ")
+	interactive_ = input("Interactive mode for script settings? (y/n): ")
 
 	if(interactive_=="y"):
 
@@ -28,11 +28,36 @@ def init_CART(numberofmeas_):
 		build_script_CART(numberOfRepPerRound_, minIPR_, numberOfRounds_)
 
 
-def change_script_CART():
+def change_script_CART(iter, configs_):
 
-	minIPR_ = random.uniform(0.001, 0.1)
-	numberOfRepPerRound_ = random.choice(range(1,9))
-	numberOfRounds_ = random.choice(range(11,90))
+	iter = iter -1
+
+	if not configs_ == str(""):
+
+		numberOfRepPerRound_ = find_value_scriptAll(configs_, "numberOfRepPerRound", iter)
+		minIPR_ = find_value_scriptAll(configs_, "minImprovementPerRound", iter)
+		numberOfRounds_ = find_value_scriptAll(configs_, "numberOfRounds", iter)
+
+	else:
+		minIPR_list = [0.001, 0.01, 0.1]
+		numberOfRounds_list = [10, 20, 30, 40, 50, 60, 70, 80, 90]
+		numberOfRepPerRound_list = [1, 2, 3]
+		len_NOR = len(numberOfRounds_list)
+		len_mIPR = len(minIPR_list)
+		len_nORPR = len(numberOfRepPerRound_list)
+		
+	
+		iter_nOR = iter%len_NOR
+		iter_mIPR = int(iter/len_NOR)%len_mIPR # 3*9 = 27 rounds
+		iter_nORPR = int(iter/(len_NOR*len_mIPR))%len_nORPR   # 3*27 =  81 rounds
+
+		numberOfRounds_ = numberOfRounds_list[iter_nOR]
+		minIPR_ = minIPR_list[iter_mIPR]
+		numberOfRepPerRound_ = numberOfRepPerRound_list[iter_nORPR]
+	
+		# minIPR_ = random.uniform(0.001, 0.1)
+		#numberOfRepPerRound_ = random.choice(range(1,9))
+		# numberOfRounds_ = random.choice(range(11,90))
 	build_script_CART(str(numberOfRepPerRound_), str(minIPR_), str(numberOfRounds_))
 
 
