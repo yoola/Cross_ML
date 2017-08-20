@@ -32,4 +32,10 @@ Do the following steps:
 
 * For more plots run the files graph_plot.py, box_plot.py and bar_chart.py
 
-Note: To run this program on a different operating system than OSX, change the command in start.py accordingly: os.system("your command")
+Note: 
+
+* To run this program on a different operating system than OSX, change the command in start.py accordingly: os.system("your command") and all paths in .../Cross_ML/Code/path_settings.py and .../Cross_ML/ces_modified/
+
+* For Windows you can replace all according files with the ones in the ../Cross_ML/Windows_version folder
+
+
