@@ -40,7 +40,7 @@ def change_script_CART(iter, configs_):
 
 	else:
 		minIPR_list = [0.001, 0.01, 0.1]
-		numberOfRounds_list = [10, 20, 30, 40, 50, 60, 70, 80, 90]
+		numberOfRounds_list = [10, 20, 30, 40, 50, 60, 70, 80]
 		numberOfRepPerRound_list = [1, 2, 3]
 		len_NOR = len(numberOfRounds_list)
 		len_mIPR = len(minIPR_list)
@@ -48,8 +48,8 @@ def change_script_CART(iter, configs_):
 		
 	
 		iter_nOR = iter%len_NOR
-		iter_mIPR = int(iter/len_NOR)%len_mIPR # 3*9 = 27 rounds
-		iter_nORPR = int(iter/(len_NOR*len_mIPR))%len_nORPR   # 3*27 =  81 rounds
+		iter_mIPR = int(iter/len_NOR)%len_mIPR # 3*8 = 24 rounds
+		iter_nORPR = int(iter/(len_NOR*len_mIPR))%len_nORPR   # 3*24 =  72 rounds
 
 		numberOfRounds_ = numberOfRounds_list[iter_nOR]
 		minIPR_ = minIPR_list[iter_mIPR]

@@ -11,7 +11,31 @@ def conv_csv2xml(filepath):
 		csvfile.close()
 	
 	csv_size = len(csv_list[0])
+
+
+
+	# check if feature is madatory or optional
 	
+	YN_list = []
+	
+	for j in range(0,csv_size):
+		for i in csv_list:
+			YN_list.append(i[j])
+	
+
+	
+	is_mandatory = []
+	p = 1
+	q = len(csv_list)-1
+
+	for i in range(1,csv_size-1):
+
+	 	is_mandatory.append(all(item == "Y" for item in YN_list[p:q]))
+	 	p = p + len(csv_list)
+	 	q = q + len(csv_list)
+
+	is_mandatory.append("False")
+
 	
 	# create variability xml
 	# check for relationships between features
@@ -39,10 +63,10 @@ def conv_csv2xml(filepath):
 	# write elements into script
 	script1.write("<vm name=\"var_model\"> \n\t <binaryOptions>")
 	elem_old = str()
-	
+	counter = 0
 	check = False
 	for elem in csv_list[0][0:csv_size-1]:
-	
+
 		# feature has children
 		if ((elem_old in elem) and elem_old):
 	
@@ -54,9 +78,12 @@ def conv_csv2xml(filepath):
 				if ((elem_old in p) and (p!=elem)):
 					script1.write("\n\t\t\t\t<options>"+p.lower()+"</options>")
 	
-	
-			script1.write("\n\t\t\t</excludedOptions>\n\t\t\t<defaultValue>Selected</defaultValue>"
-				+"\n\t\t\t<optional>False</optional>\n\t\t</configurationOption>")
+			if is_mandatory[counter] == True:
+				script1.write("\n\t\t\t</excludedOptions>\n\t\t\t<defaultValue>Selected</defaultValue>"
+					+"\n\t\t\t<optional>False</optional>\n\t\t</configurationOption>")
+			else:
+				script1.write("\n\t\t\t</excludedOptions>\n\t\t\t<defaultValue>Selected</defaultValue>"
+					+"\n\t\t\t<optional>True</optional>\n\t\t</configurationOption>")
 	
 			check = True
 
@@ -72,14 +99,20 @@ def conv_csv2xml(filepath):
 				if(elem in q):
 					check2 = True
 
+
 			if(check2 == True):
 				script1.write("\n\t\t\t<optional>False</optional>\n\t\t</configurationOption>")
 
+			elif is_mandatory[counter] == True:
+				script1.write("\n\t\t\t<optional>False</optional>\n\t\t</configurationOption>")
 			else:
 				script1.write("\n\t\t\t<optional>True</optional>\n\t\t</configurationOption>")
+
 	
 		if check==False:
 			elem_old = elem
+
+		counter = counter +1
 	
 	script1.write( "\n\t </binaryOptions> \n\t<numericOptions /> \n </vm>")
 	script1.close()
@@ -99,7 +132,6 @@ def conv_csv2xml(filepath):
 			if elem == 'Y':
 				config += csv_list[0][j].lower()+","
 			j += 1
-		#print(config)
 	
 		#replace . with , in performance number
 		csv_list[i][csv_size-1] = csv_list[i][csv_size-1].replace(".", ",")

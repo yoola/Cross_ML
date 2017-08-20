@@ -39,7 +39,7 @@ def change_script_SARKAR(iter, configs_):
 
 	else:
 		minIPR_list = [0.001, 0.01, 0.1]
-		numberOfRounds_list = [10, 20, 30, 40, 50, 60, 70, 80, 90]
+		numberOfRounds_list = [10, 20, 30, 40, 50, 60, 70, 80]
 		numberOfRepPerRound_list = [1, 2, 3]
 		len_NOR = len(numberOfRounds_list)
 		len_mIPR = len(minIPR_list)

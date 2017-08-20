@@ -27,7 +27,7 @@ def init_paths():
 
 	# Output folder path
 	# Plots folder must be created
-	path_list.append("Plots/") #9
+	path_list.append("../Plots/") #9
 
 	# build summarizing log file
 	path_list.append("/Users/jula/Github/Cross_ML/Logs/logAll_SPLC.R") #10

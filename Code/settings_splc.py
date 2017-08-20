@@ -80,14 +80,14 @@ def change_script_SPLC(meas_, var_, numberofmeas_, iter, configs_):
 
 
 	else:
-		minIPR_list = [0.01]
-		numberOfRounds_list = [10]
-		negfw_list = ["y", "n"]
-		fws_list = ["y", "n"]
-		pws_list = ["y", "n"]
-		rdm_list = ["y", "n"]
-		config_list = [1,2]
-		seed_list = [3,4]
+		minIPR_list = [0.001, 0.01]
+		numberOfRounds_list = [10,30,60,80] # 2*4 = 8
+		negfw_list = ["y", "n"] # 8*2 = 16
+		fws_list = ["y", "n"] # 16*2 = 32
+		pws_list = ["y", "n"] # 32*2= 64
+		rdm_list = ["y", "n"] # 64*2 = 128
+		config_list = [1,5] # 128 * 2 = 256
+		seed_list = [1,10] # 256*2 = 512 
 	
 
 
@@ -107,8 +107,8 @@ def change_script_SPLC(meas_, var_, numberofmeas_, iter, configs_):
 		iter_fws = int(iter/(len_NOR*len_mIPR*len_nfw))%len_fws # 3*8*2*2 = 96 rounds
 		iter_pws = int(iter/(len_NOR*len_mIPR*len_nfw*len_fws))%len_pws # 3*8*2*2*2 = 192 rounds
 		iter_rdm = int(iter/(len_NOR*len_mIPR*len_nfw*len_fws*len_pws))%len_rdm # 3*8*2*2*2*2 = 384 rounds
-		iter_config = int(iter/(len_NOR*len_mIPR*len_nfw*len_fws*len_pws*len_rdm))%len_config # 3*8*2*2*2*2 = 384 rounds
-		iter_seed = int(iter/(len_NOR*len_mIPR*len_nfw*len_fws*len_pws*len_rdm*len_config))%len_seed # 3*8*2*2*2*2 = 384 rounds
+		iter_config = int(iter/(len_NOR*len_mIPR*len_nfw*len_fws*len_pws*len_rdm))%len_config # 3*8*2*2*2*3 = 1152 rounds
+		iter_seed = int(iter/(len_NOR*len_mIPR*len_nfw*len_fws*len_pws*len_rdm*len_config))%len_seed # 3*8*2*2*2*2 = 4608 rounds
 
 
 		numberOfRounds_ = numberOfRounds_list[iter_nOR]
