@@ -30,7 +30,7 @@ Do the following steps:
 
 * Run the file start.py in the Cross_ML/Code folder
 
-* For more plots run the files graph_plot.py, box_plot.py and bar_chart.py
+* For more plots run the files graph_plot.py, box_plot.py, bar_chart.py and print_results.py
 
 Note: 
 
